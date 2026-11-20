@@ -1,16 +1,24 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroVideo from '../components/HeroVideo.astro';
-import Photo from '../components/Photo.astro';
-import { blue, grey, craft, video, alt } from '../data/media';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroVideo from "../components/HeroVideo.astro";
+import Photo from "../components/Photo.astro";
+import { blue, grey, craft, video, alt } from "../data/media";
 
 const archive = [
-  { s: grey.front, a: alt.greyFront, c: 'Estudo em Estúdio sob Anel Eclipse' },
-  { s: grey.mist, a: alt.greyMist, c: 'Presença Frontal na Névoa Noturna' },
-  { s: grey.rear, a: alt.greyRear, c: 'Rastros de Movimento — Traseira' },
-  { s: grey.fender, a: alt.greyFender, c: 'Para-lama Esculpido & Saia Lateral' },
-  { s: grey.wheel, a: alt.greyWheel, c: 'Roda Forjada Multirraios' },
-  { s: grey.exhaust, a: alt.greyExhaust, c: 'Escape Central & Difusor em Carbono' },
+  { s: grey.front, a: alt.greyFront, c: "Estudo em Estúdio sob Anel Eclipse" },
+  { s: grey.mist, a: alt.greyMist, c: "Presença Frontal na Névoa Noturna" },
+  { s: grey.rear, a: alt.greyRear, c: "Rastros de Movimento — Traseira" },
+  {
+    s: grey.fender,
+    a: alt.greyFender,
+    c: "Para-lama Esculpido & Saia Lateral",
+  },
+  { s: grey.wheel, a: alt.greyWheel, c: "Roda Forjada Multirraios" },
+  {
+    s: grey.exhaust,
+    a: alt.greyExhaust,
+    c: "Escape Central & Difusor em Carbono",
+  },
 ];
 ---
 
@@ -30,15 +38,25 @@ const archive = [
     label="GALACTI Eclipse Grey — filme cinematográfico"
     telemetryLeft="EDIÇÃO 02 · GALACTI ECLIPSE GREY"
     telemetryRight={[
-      { label: 'ASSINATURA', value: 'ECLIPSE GREY' },
-      { label: 'ATMOSFERA', value: 'GRAFITE & TITÂNIO' },
+      { label: "ASSINATURA", value: "ECLIPSE GREY" },
+      { label: "ATMOSFERA", value: "GRAFITE & TITÂNIO" },
     ]}
   >
     <div class="hero-copy-grey">
       <span class="eclipse-mark" aria-hidden="true"></span>
-      <span class="eyebrow no-rule" data-reveal="fade" style="color:var(--champagne)">GALACTI · Edição 02</span>
-      <h1 class="display" data-split>Eclipse Grey</h1>
-      <p class="tagline serif" data-reveal="up" data-delay="180">“A arte do silêncio.”</p>
+      <span
+        class="eyebrow no-rule"
+        data-reveal="fade"
+        style="color:var(--champagne)"
+      >
+        GALACTI · Edição 02
+      </span>
+      <h1 class="display" data-split>
+        Eclipse Grey
+      </h1>
+      <p class="tagline serif" data-reveal="up" data-delay="180">
+        “A arte do silêncio.”
+      </p>
     </div>
   </HeroVideo>
 
@@ -53,10 +71,19 @@ const archive = [
 
       <div class="mono-grid">
         <div class="mono-copy" data-reveal="up">
-          <span class="eyebrow" style="color:var(--champagne)">Autoridade Silenciosa</span>
-          <h2 class="h2">Onde o excesso recua,<br /><em>permanece a forma pura.</em></h2>
+          <span class="eyebrow" style="color:var(--champagne)">
+            Autoridade Silenciosa
+          </span>
+          <h2 class="h2">
+            Onde o excesso recua,
+            <br />
+            <em>permanece a forma pura.</em>
+          </h2>
           <p class="lead">
-            O GALACTI Eclipse Grey é concebido para quem prefere a sobriedade soberana ao espetáculo. O grafite acetinado líquido absorve o brilho ambiente, devolvendo apenas reflexos precisos sobre linhas de titânio escovado.
+            O GALACTI Eclipse Grey é concebido para quem prefere a sobriedade
+            soberana ao espetáculo. O grafite acetinado líquido absorve o brilho
+            ambiente, devolvendo apenas reflexos precisos sobre linhas de
+            titânio escovado.
           </p>
 
           <div class="tonal-bars">
@@ -83,9 +110,18 @@ const archive = [
           </div>
         </div>
 
-        <figure class="fx-frame border-gradient mono-frame" data-reveal="up" data-delay="120">
+        <figure
+          class="fx-frame border-gradient mono-frame"
+          data-reveal="up"
+          data-delay="120"
+        >
           <div class="fx-frame-inner">
-            <Photo src={grey.front} alt={alt.greyFront} zoomed sizes="(min-width: 960px) 52vw, 94vw" />
+            <Photo
+              src={grey.front}
+              alt={alt.greyFront}
+              zoomed
+              sizes="(min-width: 960px) 52vw, 94vw"
+            />
           </div>
         </figure>
       </div>
@@ -104,16 +140,27 @@ const archive = [
       <div class="triptych">
         <article class="tri-card fx-card border-gradient" data-reveal="up">
           <div class="tri-media frame">
-            <Photo src={grey.track} alt={alt.greyTrack} sizes="(min-width: 900px) 28vw, 92vw" />
+            <Photo
+              src={grey.track}
+              alt={alt.greyTrack}
+              sizes="(min-width: 900px) 28vw, 92vw"
+            />
           </div>
           <div class="tri-body">
             <span class="figure-no">/ I</span>
             <h3 class="h3">Aproximação Noturna</h3>
-            <p>Emergindo sobre o asfalto escuro e úmido sob iluminação arquitetônica fria.</p>
+            <p>
+              Emergindo sobre o asfalto escuro e úmido sob iluminação
+              arquitetônica fria.
+            </p>
           </div>
         </article>
 
-        <article class="tri-card tri-elevated fx-card border-gradient" data-reveal="up" data-delay="110">
+        <article
+          class="tri-card tri-elevated fx-card border-gradient"
+          data-reveal="up"
+          data-delay="110"
+        >
           <div class="tri-media frame">
             <video
               data-autoplay
@@ -131,18 +178,32 @@ const archive = [
           <div class="tri-body">
             <span class="figure-no">/ II</span>
             <h3 class="h3">Velocidade em Silêncio</h3>
-            <p>Movimento contínuo emoldurado em grafite líquido, vapor e lâminas duplas de LED.</p>
+            <p>
+              Movimento contínuo emoldurado em grafite líquido, vapor e lâminas
+              duplas de LED.
+            </p>
           </div>
         </article>
 
-        <article class="tri-card fx-card border-gradient" data-reveal="up" data-delay="220">
+        <article
+          class="tri-card fx-card border-gradient"
+          data-reveal="up"
+          data-delay="220"
+        >
           <div class="tri-media frame">
-            <Photo src={grey.rear} alt={alt.greyRear} sizes="(min-width: 900px) 28vw, 92vw" />
+            <Photo
+              src={grey.rear}
+              alt={alt.greyRear}
+              sizes="(min-width: 900px) 28vw, 92vw"
+            />
           </div>
           <div class="tri-body">
             <span class="figure-no">/ III</span>
             <h3 class="h3">Rastro Luminoso</h3>
-            <p>Ombros traseiros musculosos e anéis incandescentes deixando traços de luz em seu percurso.</p>
+            <p>
+              Ombros traseiros musculosos e anéis incandescentes deixando traços
+              de luz em seu percurso.
+            </p>
           </div>
         </article>
       </div>
@@ -161,30 +222,56 @@ const archive = [
       <div class="plates-layout">
         <figure class="fx-frame border-gradient plate-large" data-reveal="up">
           <div class="fx-frame-inner">
-            <Photo src={grey.fender} alt={alt.greyFender} sizes="(min-width: 960px) 58vw, 94vw" />
+            <Photo
+              src={grey.fender}
+              alt={alt.greyFender}
+              sizes="(min-width: 960px) 58vw, 94vw"
+            />
           </div>
         </figure>
 
         <div class="plates-stack">
-          <article class="fx-card border-gradient mini-plate" data-reveal="up" data-delay="100">
+          <article
+            class="fx-card border-gradient mini-plate"
+            data-reveal="up"
+            data-delay="100"
+          >
             <div class="mini-img frame">
-              <Photo src={grey.wheel} alt={alt.greyWheel} sizes="(min-width: 960px) 32vw, 92vw" />
+              <Photo
+                src={grey.wheel}
+                alt={alt.greyWheel}
+                sizes="(min-width: 960px) 32vw, 92vw"
+              />
             </div>
             <div class="mini-copy">
               <span class="caption">Geometria Forjada</span>
               <h3 class="h3">Postura em Titânio Usinado</h3>
-              <p>Geometria multirraios em turbina aliada a discos cerâmicos e pinças anodizadas escuras.</p>
+              <p>
+                Geometria multirraios em turbina aliada a discos cerâmicos e
+                pinças anodizadas escuras.
+              </p>
             </div>
           </article>
 
-          <article class="fx-card border-gradient mini-plate" data-reveal="up" data-delay="180">
+          <article
+            class="fx-card border-gradient mini-plate"
+            data-reveal="up"
+            data-delay="180"
+          >
             <div class="mini-img frame">
-              <Photo src={craft.carbon} alt={alt.craftCarbon} sizes="(min-width: 960px) 32vw, 92vw" />
+              <Photo
+                src={craft.carbon}
+                alt={alt.craftCarbon}
+                sizes="(min-width: 960px) 32vw, 92vw"
+              />
             </div>
             <div class="mini-copy">
               <span class="caption">Textura de Superfície</span>
               <h3 class="h3">Trama em Carbono Forjado</h3>
-              <p>Fibras de carbono foscas em orientação orgânica criando profundidade sem brilho ostensivo.</p>
+              <p>
+                Fibras de carbono foscas em orientação orgânica criando
+                profundidade sem brilho ostensivo.
+              </p>
             </div>
           </article>
         </div>
@@ -202,47 +289,66 @@ const archive = [
       <div class="fx-section-rule" aria-hidden="true"></div>
 
       <div class="archive-grid">
-        {
-          archive.map((item, idx) => (
-            <button
-              type="button"
-              class="arch-tile fx-card border-gradient"
-              data-lightbox="grey"
-              data-caption={`Eclipse Grey — ${item.c}`}
-              data-reveal="up"
-              data-delay={idx * 60}
-              aria-label={`Ampliar: ${item.c}`}
-            >
-              <div class="arch-img frame">
-                <Photo src={item.s} alt={item.a} sizes="(min-width: 900px) 30vw, 92vw" />
-              </div>
-              <div class="arch-meta">
-                <span class="figure-no">0{idx + 1}</span>
-                <span class="caption">{item.c}</span>
-              </div>
-            </button>
-          ))
-        }
+        {archive.map((item, idx) => (
+          <button
+            type="button"
+            class="arch-tile fx-card border-gradient"
+            data-lightbox="grey"
+            data-caption={`Eclipse Grey — ${item.c}`}
+            data-reveal="up"
+            data-delay={idx * 60}
+            aria-label={`Ampliar: ${item.c}`}
+          >
+            <div class="arch-img frame">
+              <Photo
+                src={item.s}
+                alt={item.a}
+                sizes="(min-width: 900px) 30vw, 92vw"
+              />
+            </div>
+            <div class="arch-meta">
+              <span class="figure-no">0{idx + 1}</span>
+              <span class="caption">{item.c}</span>
+            </div>
+          </button>
+        ))}
       </div>
 
       <!-- Passagem para Cosmic Blue -->
       <div class="crossover fx-card border-gradient" data-reveal="up">
         <div class="cross-copy">
-          <span class="eyebrow" style="color:#93c5fd">A Outra Expressão</span>
-          <h2 class="h2">Entre sob <em>a luz das estrelas.</em></h2>
+          <span class="eyebrow" style="color:#93c5fd">
+            A Outra Expressão
+          </span>
+          <h2 class="h2">
+            Entre sob <em>a luz das estrelas.</em>
+          </h2>
           <p class="lead">
-            Conheça o contraponto luminoso em azul cósmico ao Eclipse Grey — energia e profundidade em órbita contínua.
+            Conheça o contraponto luminoso em azul cósmico ao Eclipse Grey —
+            energia e profundidade em órbita contínua.
           </p>
           <a href="/cosmic-blue/" class="pill-btn border-gradient">
             <span>Explorar Cosmic Blue</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
               <path d="M5 12h14"></path>
               <path d="m13 6 6 6-6 6"></path>
             </svg>
           </a>
         </div>
         <div class="cross-img frame">
-          <Photo src={blue.front} alt={alt.front} sizes="(min-width: 900px) 46vw, 92vw" />
+          <Photo
+            src={blue.front}
+            alt={alt.front}
+            sizes="(min-width: 900px) 46vw, 92vw"
+          />
         </div>
       </div>
     </div>
