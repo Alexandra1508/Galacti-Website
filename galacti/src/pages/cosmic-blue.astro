@@ -1,0 +1,522 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroVideo from '../components/HeroVideo.astro';
+import Photo from '../components/Photo.astro';
+import { blue, grey, craft, video, alt } from '../data/media';
+
+const gallery = [
+  { s: blue.front, a: alt.front, c: 'Óptica Frontal Simétrica', cls: 'g1' },
+  { s: blue.interior, a: alt.interior, c: 'Cabine Noturna Pespontada', cls: 'g2' },
+  { s: blue.rear, a: alt.rear, c: 'Difusor Traseiro & Lanternas Quádruplas', cls: 'g3' },
+  { s: blue.profile, a: alt.profile, c: 'Silhueta Lateral Cósmica', cls: 'g4' },
+  { s: blue.doors, a: alt.doors, c: 'Abertura Diédrica Elevada', cls: 'g5' },
+];
+---
+
+<BaseLayout
+  title="Cosmic Blue"
+  current="cosmic-blue"
+  theme="blue"
+  description="GALACTI Cosmic Blue — O universo em movimento. Azul metálico profundo, profundidade estelar e elegância europeia."
+>
+  <!-- ============ HERO ============ -->
+  <HeroVideo
+    id="blue-film"
+    src={video.blue}
+    poster={blue.profile}
+    tone="blue"
+    label="GALACTI Cosmic Blue — filme cinematográfico"
+    telemetryLeft="EDIÇÃO 01 · GALACTI COSMIC BLUE"
+    telemetryRight={[
+      { label: 'ASSINATURA', value: 'COSMIC BLUE' },
+      { label: 'ACABAMENTO', value: 'METÁLICO ESTELAR' },
+    ]}
+  >
+    <div class="hero-copy-blue">
+      <span class="eyebrow no-rule" data-reveal="fade">GALACTI · Edição 01</span>
+      <h1 class="display" data-split>Cosmic Blue</h1>
+      <p class="tagline serif" data-reveal="up" data-delay="180">“O universo em movimento.”</p>
+    </div>
+  </HeroVideo>
+
+  <!-- ============ SEÇÃO (01) — CONCEITO & ASSINATURA CROMÁTICA ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>01 · Conceito &amp; Profundidade Cromática</span>
+        <span>(01)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="concept-spread">
+        <figure class="fx-frame border-gradient concept-plate" data-reveal="up">
+          <div class="fx-frame-inner">
+            <Photo src={blue.profile} alt={alt.profile} zoomed sizes="(min-width: 960px) 60vw, 94vw" />
+          </div>
+        </figure>
+
+        <div class="concept-copy fx-card border-gradient" data-reveal="up" data-delay="120">
+          <span class="eyebrow">Pintura Celestial</span>
+          <h2 class="h2">Não é pintado.<br /><em>É cartografado.</em></h2>
+          <p class="lead">
+            Cosmic Blue revela-se como uma noite abissal à distância e desperta em uma nebulosa viva sob luz direta. Cada curva traduz velocidade em profundidade luminosa.
+          </p>
+
+          <div class="swatch-grid">
+            <div class="sw-item"><i style="background:#040711"></i><div><strong>Preto Espacial</strong><span>Sombra Base</span></div></div>
+            <div class="sw-item"><i style="background:#0b1d48"></i><div><strong>Azul Nebulosa</strong><span>Pigmento Central</span></div></div>
+            <div class="sw-item"><i style="background:#3b82f6"></i><div><strong>Azul Estelar</strong><span>Floco Metálico</span></div></div>
+            <div class="sw-item"><i style="background:#d4b483"></i><div><strong>Champagne</strong><span>Detalhe Fino</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (02) — ARQUITETURA EXTERNA ============ -->
+  <section class="section exterior-sec">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>02 · Arquitetura Externa</span>
+        <span>(02)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="fx-frame border-gradient ext-frame" data-reveal="up">
+        <div class="fx-frame-inner ext-inner">
+          <Photo src={blue.doors} alt={alt.doors} sizes="96vw" />
+          <div class="ext-gradient" aria-hidden="true"></div>
+          <div class="ext-overlay">
+            <h2 class="h2">Asas erguidas em direção <em>ao céu noturno.</em></h2>
+            <p class="lead">A geometria diédrica das portas emoldura o cockpit e abre a silhueta como uma nave orbital.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ext-pillars">
+        <article class="fx-card border-gradient p-card" data-reveal="up">
+          <span class="figure-no">/ 01</span>
+          <h3 class="h3">Abertura Diédrica</h3>
+          <p>As portas elevam-se suavemente para fora e para cima, criando uma entrada desobstruída para a cabine.</p>
+        </article>
+        <article class="fx-card border-gradient p-card" data-reveal="up" data-delay="100">
+          <span class="figure-no">/ 02</span>
+          <h3 class="h3">Flancos Esculpidos</h3>
+          <p>Canais laterais profundos conduzem o fluxo de ar com limpeza até as tomadas traseiras enquanto capturam reflexos estelares.</p>
+        </article>
+        <article class="fx-card border-gradient p-card" data-reveal="up" data-delay="200">
+          <span class="figure-no">/ 03</span>
+          <h3 class="h3">Reflexo Espelhado</h3>
+          <p>Cada transição de superfície é calibrada para que os reflexos fluam sem quebras do splitter dianteiro ao difusor traseiro.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (03) — DETALHES DE DESIGN & ÓPTICA ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>03 · Detalhes de Design &amp; Óptica</span>
+        <span>(03)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="details-head">
+        <h2 class="h2" data-split>Leia a carroceria <em>como um mapa estelar.</em></h2>
+        <p class="lead" data-reveal="up">Estudos em close de precisão óptica, geometria forjada das rodas e saídas aerodinâmicas.</p>
+      </div>
+
+      <div class="details-grid">
+        <article class="detail-card fx-card border-gradient" data-reveal="up">
+          <div class="detail-img frame">
+            <Photo src={craft.headlight} alt={alt.craftHeadlight} sizes="(min-width: 900px) 30vw, 92vw" />
+          </div>
+          <div class="detail-copy">
+            <span class="caption">01 · Óptica Cristalina</span>
+            <h3 class="h3">Precisão Iluminada</h3>
+            <p>Elementos de LED em camadas cristalinas alojados em tomadas de carbono forjado com sutis bordas champagne.</p>
+          </div>
+        </article>
+
+        <article class="detail-card fx-card border-gradient" data-reveal="up" data-delay="100">
+          <div class="detail-img frame">
+            <Photo src={craft.wheel} alt={alt.craftWheel} sizes="(min-width: 900px) 30vw, 92vw" />
+          </div>
+          <div class="detail-copy">
+            <span class="caption">02 · Roda &amp; Freio</span>
+            <h3 class="h3">Órbita Cinco Raios</h3>
+            <p>Raios forjados usinados emoldurando discos cerâmicos perfurados e pinças em Azul Cósmico.</p>
+          </div>
+        </article>
+
+        <article class="detail-card fx-card border-gradient" data-reveal="up" data-delay="200">
+          <div class="detail-img frame">
+            <Photo src={blue.rear} alt={alt.rear} sizes="(min-width: 900px) 30vw, 92vw" />
+          </div>
+          <div class="detail-copy">
+            <span class="caption">03 · Traseira</span>
+            <h3 class="h3">Assinatura de Propulsão</h3>
+            <p>Quatro anéis luminosos emolduram as duas saídas centrais de escape sobre um difusor em carbono esculpido.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (04) — COCKPIT & ACABAMENTO ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>04 · Cockpit &amp; Acabamento Tátil</span>
+        <span>(04)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="cockpit-grid">
+        <figure class="fx-frame border-gradient" data-reveal="up">
+          <div class="fx-frame-inner cockpit-main">
+            <Photo src={blue.interior} alt={alt.interior} sizes="(min-width: 900px) 58vw, 94vw" />
+          </div>
+        </figure>
+
+        <div class="cockpit-side">
+          <figure class="fx-frame border-gradient" data-reveal="up" data-delay="100">
+            <div class="fx-frame-inner cockpit-detail">
+              <Photo src={craft.cockpit} alt={alt.craftCockpit} sizes="(min-width: 900px) 34vw, 94vw" />
+            </div>
+          </figure>
+          <div class="fx-card border-gradient cockpit-notes" data-reveal="up" data-delay="180">
+            <span class="eyebrow">Ateliê Noturno</span>
+            <h3 class="h3">Sob medida para a quietude em alta velocidade</h3>
+            <p>
+              Couro azul-marinho profundo, costura contrastante azul, trama de carbono no aro do volante e instrumentação minimalista mantêm o foco estritamente no horizonte.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (05) — GALERIA LIGHTBOX & TRANSIÇÃO ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>05 · Arquivo Fotográfico</span>
+        <span>(05)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="mosaic">
+        {
+          gallery.map((g, i) => (
+            <button
+              type="button"
+              class={`tile ${g.cls} frame border-gradient`}
+              data-lightbox="blue"
+              data-caption={`Cosmic Blue — ${g.c}`}
+              data-reveal="up"
+              data-delay={i * 70}
+              aria-label={`Ampliar: ${g.c}`}
+            >
+              <Photo src={g.s} alt={g.a} sizes="(min-width: 900px) 45vw, 92vw" />
+              <span class="tile-cap caption">{g.c}</span>
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Passagem para Eclipse Grey -->
+      <div class="crossover fx-card border-gradient" data-reveal="up">
+        <div class="cross-img frame">
+          <Photo src={grey.front} alt={alt.greyFront} sizes="(min-width: 900px) 46vw, 92vw" />
+        </div>
+        <div class="cross-copy">
+          <span class="eyebrow" style="color:var(--champagne)">A Outra Expressão</span>
+          <h2 class="h2">Agora entre <em>no silêncio.</em></h2>
+          <p class="lead">
+            Contraste a energia luminosa do Cosmic Blue com a autoridade monolítica do GALACTI Eclipse Grey.
+          </p>
+          <a href="/eclipse-grey/" class="pill-btn border-gradient">
+            <span>Explorar Eclipse Grey</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path d="M5 12h14"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-copy-blue {
+    position: absolute;
+    left: var(--pad);
+    right: var(--pad);
+    bottom: clamp(4.8rem, 12vh, 8rem);
+    display: grid;
+    justify-items: start;
+    gap: 1rem;
+    max-width: 44rem;
+  }
+  .tagline {
+    font-size: clamp(1.2rem, 2.1vw, 1.85rem);
+    font-style: italic;
+    color: rgba(248, 250, 252, 0.9);
+    letter-spacing: 0.04em;
+  }
+
+  /* Concept */
+  .concept-spread {
+    display: grid;
+    grid-template-columns: 1.25fr 0.85fr;
+    gap: clamp(1.5rem, 3.5vw, 3rem);
+    align-items: center;
+  }
+  .concept-plate .fx-frame-inner {
+    aspect-ratio: 16 / 10;
+  }
+  .concept-copy {
+    padding: clamp(1.75rem, 3vw, 2.75rem);
+    display: grid;
+    gap: 1.35rem;
+    align-content: center;
+  }
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+    margin-top: 0.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+  .sw-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .sw-item i {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    flex-shrink: 0;
+  }
+  .sw-item strong {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ice);
+  }
+  .sw-item span {
+    display: block;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  @media (max-width: 960px) {
+    .concept-spread {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Exterior */
+  .ext-inner {
+    aspect-ratio: 16 / 8.5;
+  }
+  .ext-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(5, 6, 11, 0.9) 0%, rgba(5, 6, 11, 0.3) 45%, transparent 75%);
+  }
+  .ext-overlay {
+    position: absolute;
+    left: clamp(1.5rem, 4vw, 3.5rem);
+    right: clamp(1.5rem, 4vw, 3.5rem);
+    bottom: clamp(1.5rem, 4vw, 3rem);
+    max-width: 42rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .ext-pillars {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .p-card {
+    padding: 1.65rem;
+    display: grid;
+    gap: 0.65rem;
+  }
+  .p-card p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  @media (max-width: 900px) {
+    .ext-inner {
+      aspect-ratio: 4 / 5;
+    }
+    .ext-pillars {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Details */
+  .details-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 2.2vw, 2rem);
+  }
+  .detail-card {
+    padding: 0.75rem;
+    display: grid;
+    gap: 0.85rem;
+  }
+  .detail-img {
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+  }
+  .detail-img :global(img) {
+    transition: transform 0.85s var(--ease);
+  }
+  .detail-card:hover .detail-img :global(img) {
+    transform: scale(1.05);
+  }
+  .detail-copy {
+    padding: 0.5rem 0.75rem 0.9rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .detail-copy p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  @media (max-width: 900px) {
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Cockpit */
+  .cockpit-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+    align-items: center;
+  }
+  .cockpit-main {
+    aspect-ratio: 16 / 10;
+  }
+  .cockpit-side {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .cockpit-detail {
+    aspect-ratio: 4 / 3;
+  }
+  .cockpit-notes {
+    padding: 1.65rem;
+    display: grid;
+    gap: 0.75rem;
+    align-content: center;
+  }
+  .cockpit-notes p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.68;
+  }
+  @media (max-width: 960px) {
+    .cockpit-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Lightbox Mosaic */
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.15rem;
+  }
+  .tile {
+    position: relative;
+    cursor: zoom-in;
+    aspect-ratio: 16 / 10;
+  }
+  .g1 {
+    grid-column: span 6;
+  }
+  .g2 {
+    grid-column: span 6;
+  }
+  .g3 {
+    grid-column: span 4;
+  }
+  .g4 {
+    grid-column: span 4;
+  }
+  .g5 {
+    grid-column: span 4;
+  }
+  .tile :global(img) {
+    transition: transform 0.9s var(--ease);
+  }
+  .tile:hover :global(img) {
+    transform: scale(1.04);
+  }
+  .tile-cap {
+    position: absolute;
+    left: 1rem;
+    bottom: 0.9rem;
+    z-index: 2;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    background: rgba(5, 6, 11, 0.72);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    color: #fff;
+  }
+  @media (max-width: 820px) {
+    .g1,
+    .g2,
+    .g3,
+    .g4,
+    .g5 {
+      grid-column: span 12;
+    }
+  }
+
+  /* Crossover */
+  .crossover {
+    margin-top: clamp(3rem, 6vw, 5rem);
+    padding: clamp(1.25rem, 3vw, 2.25rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+  .cross-img {
+    aspect-ratio: 16 / 10;
+  }
+  .cross-copy {
+    display: grid;
+    gap: 1.25rem;
+    justify-items: start;
+  }
+  @media (max-width: 860px) {
+    .crossover {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

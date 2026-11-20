@@ -1,0 +1,595 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Photo from '../components/Photo.astro';
+import { blue, grey, craft, alt } from '../data/media';
+
+let seed = 11;
+const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+const dust = Array.from({ length: 64 }, () => ({
+  x: Math.round(rnd() * 1000),
+  y: Math.round(rnd() * 540),
+  r: +(0.6 + rnd() * 1.4).toFixed(2),
+  o: +(0.25 + rnd() * 0.55).toFixed(2),
+}));
+
+const pillars = [
+  {
+    id: 'design',
+    no: '01',
+    n: 'Design',
+    x: 170,
+    y: 410,
+    t: 'A forma vem primeiro. Uma silhueta deve ser reconhecida pelo que omite — e lembrada pelo que preserva.',
+  },
+  {
+    id: 'engineering',
+    no: '02',
+    n: 'Engenharia',
+    x: 380,
+    y: 185,
+    t: 'Precisão é uma forma de respeito — pela matéria, pelo ar que ela divide e por quem está ao volante.',
+  },
+  {
+    id: 'technology',
+    no: '03',
+    n: 'Tecnologia',
+    x: 590,
+    y: 310,
+    t: 'Presente, jamais ruidosa. Inteligência integrada de maneira invisível para que o ritual da condução permaneça puro.',
+  },
+  {
+    id: 'exclusivity',
+    no: '04',
+    n: 'Exclusividade',
+    x: 790,
+    y: 135,
+    t: 'Rara por propósito. Cada unidade GALACTI pertence a uma constelação restrita, jamais à produção em massa.',
+  },
+  {
+    id: 'universe',
+    no: '05',
+    n: 'Universo',
+    x: 860,
+    y: 445,
+    t: 'Nosso horizonte. Tudo o que nasce no ateliê GALACTI é medido pela escala silenciosa do espaço profundo.',
+  },
+];
+
+const edges = [
+  ['design', 'engineering'],
+  ['engineering', 'technology'],
+  ['technology', 'exclusivity'],
+  ['technology', 'universe'],
+  ['exclusivity', 'universe'],
+] as const;
+
+const byId = Object.fromEntries(pillars.map((p) => [p.id, p]));
+---
+
+<BaseLayout
+  title="O Universo Galacti"
+  current="universe"
+  theme="blue"
+  description="A filosofia e o universo conceitual da GALACTI — unindo alta manufatura europeia e serenidade cósmica."
+>
+  <!-- ============ HERO DO OBSERVATÓRIO ============ -->
+  <section class="obs-hero" data-hero>
+    <div class="nebula" aria-hidden="true"><i></i><i></i></div>
+    <canvas class="stars" data-starfield data-tint="mixed" data-density="1.2" aria-hidden="true"></canvas>
+
+    <div class="wrap obs-grid">
+      <div class="obs-copy">
+        <span class="eyebrow" data-reveal="fade">O Universo Galacti</span>
+        <h1 class="display" data-split>Não buscamos uma estrada.<br /><em>Olhamos para o alto.</em></h1>
+        <p class="lead" data-reveal="up" data-delay="180">
+          A GALACTI nasce não apenas como um automóvel, mas como um diálogo íntimo entre a alta manufatura europeia e a geometria do cosmos.
+        </p>
+        <a href="#acts" class="pill-btn border-gradient" data-reveal="up" data-delay="260">
+          <span>Entrar na Filosofia</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M5 12h14"></path>
+            <path d="m13 6 6 6-6 6"></path>
+          </svg>
+        </a>
+      </div>
+
+      <figure class="fx-frame border-gradient obs-frame" data-reveal="up" data-delay="120">
+        <div class="fx-frame-inner">
+          <Photo src={blue.doors} alt={alt.doors} eager sizes="(min-width: 960px) 46vw, 94vw" />
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (01) — TRÊS ATOS DE FILOSOFIA ============ -->
+  <section class="section" id="acts">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>01 · Três Atos do Ateliê</span>
+        <span>(01)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="acts-grid">
+        <article class="act-card fx-card border-gradient" data-reveal="up">
+          <div class="act-img frame">
+            <Photo src={blue.profile} alt={alt.profile} sizes="(min-width: 900px) 30vw, 92vw" />
+          </div>
+          <div class="act-body">
+            <div class="act-top">
+              <span class="figure-no">ATO I</span>
+              <span class="caption">Origem</span>
+            </div>
+            <h2 class="h3">Além da convenção</h2>
+            <p>Todo GALACTI começa com uma única questão: quão longe a escultura automotiva pode ir preservando a simplicidade serena?</p>
+          </div>
+        </article>
+
+        <article class="act-card fx-card border-gradient" data-reveal="up" data-delay="100">
+          <div class="act-img frame">
+            <Photo src={grey.front} alt={alt.greyFront} sizes="(min-width: 900px) 30vw, 92vw" />
+          </div>
+          <div class="act-body">
+            <div class="act-top">
+              <span class="figure-no">ATO II</span>
+              <span class="caption">Gravidade &amp; Órbita</span>
+            </div>
+            <h2 class="h3">Precisão disciplinada</h2>
+            <p>A engenharia atua como gravidade — mantendo proporção, equilíbrio e tensão de superfície em harmonia sem esforço.</p>
+          </div>
+        </article>
+
+        <article class="act-card fx-card border-gradient" data-reveal="up" data-delay="200">
+          <div class="act-img frame">
+            <Photo src={blue.rear} alt={alt.rear} sizes="(min-width: 900px) 30vw, 92vw" />
+          </div>
+          <div class="act-body">
+            <div class="act-top">
+              <span class="figure-no">ATO III</span>
+              <span class="caption">Chegada</span>
+            </div>
+            <h2 class="h3">Permanência silenciosa</h2>
+            <p>O que chega ao asfalto é irrepetível: concebido para os poucos que valorizam presença sem alarde.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (02) — CARTA ESTELAR INTERATIVA ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>02 · Carta Estelar — Cinco Pilares</span>
+        <span>(02)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="chart-stage fx-card border-gradient" data-reveal="up">
+        <div class="map">
+          <svg viewBox="0 0 1000 540" role="group" aria-label="Constelação de pilares GALACTI">
+            <g class="dust">
+              {dust.map((d) => <circle cx={d.x} cy={d.y} r={d.r} opacity={d.o} />)}
+            </g>
+            <g class="edges">
+              {
+                edges.map(([a, b]) => (
+                  <line x1={byId[a].x} y1={byId[a].y} x2={byId[b].x} y2={byId[b].y} />
+                ))
+              }
+            </g>
+            {
+              pillars.map((n, i) => (
+                <g
+                  class={`node ${i === 0 ? 'is-active' : ''}`}
+                  data-id={n.id}
+                  tabindex="0"
+                  role="button"
+                  aria-label={n.n}
+                  transform={`translate(${n.x} ${n.y})`}
+                >
+                  <circle class="halo" r="28" />
+                  <circle class="core" r="6" />
+                  <text class="nlabel" x="0" y="-28" text-anchor="middle">{n.n}</text>
+                </g>
+              ))
+            }
+          </svg>
+        </div>
+
+        <aside class="pillar-panel" aria-live="polite">
+          <div class="pillar-media frame">
+            <div class="p-shot is-active" data-p-shot="design">
+              <Photo src={blue.front} alt={alt.front} sizes="(min-width: 900px) 28vw, 90vw" />
+            </div>
+            <div class="p-shot" data-p-shot="engineering">
+              <Photo src={craft.wheel} alt={alt.craftWheel} sizes="(min-width: 900px) 28vw, 90vw" />
+            </div>
+            <div class="p-shot" data-p-shot="technology">
+              <Photo src={craft.headlight} alt={alt.craftHeadlight} sizes="(min-width: 900px) 28vw, 90vw" />
+            </div>
+            <div class="p-shot" data-p-shot="exclusivity">
+              <Photo src={grey.front} alt={alt.greyFront} sizes="(min-width: 900px) 28vw, 90vw" />
+            </div>
+            <div class="p-shot" data-p-shot="universe">
+              <Photo src={blue.doors} alt={alt.doors} sizes="(min-width: 900px) 28vw, 90vw" />
+            </div>
+          </div>
+
+          <div class="pillar-text">
+            <span class="figure-no" id="pillar-no">01</span>
+            <h3 class="h3" id="pillar-name">{pillars[0].n}</h3>
+            <p class="lead" id="pillar-text">{pillars[0].t}</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (03) — UMA SILHUETA, DOIS HORIZONTES ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>03 · Uma Silhueta · Duas Expressões</span>
+        <span>(03)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="compare-head">
+        <h2 class="h2" data-split>Duas maneiras de <em>comandar a noite.</em></h2>
+        <a href="/contact/" class="pill-btn pill-btn-primary">
+          <span>Entrar na Experiência Privada</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M5 12h14"></path>
+            <path d="m13 6 6 6-6 6"></path>
+          </svg>
+        </a>
+      </div>
+
+      <div class="fx-frame border-gradient" data-reveal="up">
+        <div class="fx-frame-inner compare" id="compare" style="--pos:50%">
+          <Photo src={grey.front} alt={alt.greyFront} sizes="94vw" class="cmp-img" />
+          <div class="cmp-top">
+            <Photo src={blue.profile} alt={alt.profile} sizes="94vw" class="cmp-img" />
+          </div>
+          <span class="cmp-label l-blue border-gradient caption">Cosmic Blue</span>
+          <span class="cmp-label l-grey border-gradient caption">Eclipse Grey</span>
+          <span class="cmp-handle" aria-hidden="true"><i></i></span>
+          <input
+            type="range"
+            min="5"
+            max="95"
+            value="50"
+            class="cmp-range"
+            aria-label="Comparar Cosmic Blue e Eclipse Grey"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script
+    type="application/json"
+    id="pillar-data"
+    set:html={JSON.stringify(pillars)}
+  />
+</BaseLayout>
+
+<style>
+  /* Observatory Hero */
+  .obs-hero {
+    position: relative;
+    min-height: 92vh;
+    display: grid;
+    align-items: center;
+    padding-top: calc(var(--header-h) + 2rem);
+    padding-bottom: clamp(3rem, 7vh, 5rem);
+    overflow: hidden;
+  }
+  .nebula i {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  .nebula i:nth-child(1) {
+    width: 44vw;
+    height: 44vw;
+    left: -8vw;
+    top: 8vh;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.45), transparent 70%);
+  }
+  .nebula i:nth-child(2) {
+    width: 34vw;
+    height: 34vw;
+    right: -6vw;
+    bottom: 4vh;
+    background: radial-gradient(circle, rgba(212, 180, 131, 0.22), transparent 70%);
+  }
+  .stars {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .obs-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .obs-copy {
+    display: grid;
+    gap: 1.35rem;
+    justify-items: start;
+  }
+  .obs-frame .fx-frame-inner {
+    aspect-ratio: 16 / 11;
+  }
+  @media (max-width: 960px) {
+    .obs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Acts */
+  .acts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 2.2vw, 2rem);
+  }
+  @media (max-width: 900px) {
+    .acts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .act-card {
+    padding: 0.75rem;
+    display: grid;
+    gap: 0.9rem;
+  }
+  .act-img {
+    aspect-ratio: 16 / 10;
+    border-radius: 18px;
+  }
+  .act-body {
+    padding: 0.35rem 0.75rem 0.9rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .act-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .act-body p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* Star Chart */
+  .chart-stage {
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: center;
+  }
+  .map svg {
+    width: 100%;
+    height: auto;
+  }
+  .dust circle {
+    fill: #eef2f8;
+  }
+  .edges line {
+    stroke: rgba(147, 197, 253, 0.38);
+    stroke-width: 1;
+  }
+  .node {
+    cursor: pointer;
+    outline: none;
+  }
+  .node .core {
+    fill: #eef2f8;
+    transition: r 0.3s ease;
+  }
+  .node .halo {
+    fill: rgba(96, 165, 250, 0.14);
+    stroke: rgba(147, 197, 253, 0.55);
+    opacity: 0;
+    transform: scale(0.7);
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      opacity 0.35s ease,
+      transform 0.45s var(--ease);
+  }
+  .node .nlabel {
+    font-family: var(--sans);
+    font-size: 14px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    fill: rgba(248, 250, 252, 0.65);
+    transition: fill 0.3s ease;
+  }
+  .node:hover .halo,
+  .node:focus-visible .halo,
+  .node.is-active .halo {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .node.is-active .core {
+    fill: #d4b483;
+  }
+  .node:hover .nlabel,
+  .node.is-active .nlabel {
+    fill: #ffffff;
+  }
+
+  .pillar-panel {
+    display: grid;
+    gap: 1.15rem;
+  }
+  .pillar-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+  }
+  .p-shot {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+  }
+  .p-shot.is-active {
+    opacity: 1;
+  }
+  .p-shot :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .pillar-text {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .pillar-text .lead {
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+  @media (max-width: 960px) {
+    .chart-stage {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Compare */
+  .compare-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .compare {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 600px;
+    cursor: ew-resize;
+    touch-action: pan-y;
+  }
+  .compare :global(.cmp-img),
+  .cmp-top,
+  .cmp-top :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cmp-top {
+    clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+  }
+  .cmp-label {
+    position: absolute;
+    bottom: 1.2rem;
+    z-index: 3;
+    padding: 0.4rem 0.9rem;
+    border-radius: 9999px;
+    background: rgba(5, 6, 11, 0.72);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    color: #fff;
+  }
+  .l-blue {
+    left: 1.25rem;
+  }
+  .l-grey {
+    right: 1.25rem;
+  }
+  .cmp-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--pos);
+    width: 1px;
+    background: rgba(255, 255, 255, 0.85);
+    z-index: 3;
+    pointer-events: none;
+  }
+  .cmp-handle i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.75rem;
+    height: 2.75rem;
+    translate: -50% -50%;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    background: rgba(5, 6, 11, 0.55);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  .cmp-range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    z-index: 4;
+    cursor: ew-resize;
+  }
+</style>
+
+<script>
+  type Pillar = { id: string; no: string; n: string; t: string };
+  const pillars: Pillar[] = JSON.parse(document.getElementById('pillar-data')?.textContent ?? '[]');
+  const nodes = document.querySelectorAll<SVGGElement>('.node');
+  const shots = document.querySelectorAll<HTMLElement>('.p-shot');
+  const nameEl = document.getElementById('pillar-name');
+  const textEl = document.getElementById('pillar-text');
+  const noEl = document.getElementById('pillar-no');
+
+  const selectPillar = (id: string) => {
+    const p = pillars.find((x) => x.id === id);
+    if (!p) return;
+    nodes.forEach((n) => n.classList.toggle('is-active', n.dataset.id === id));
+    shots.forEach((s) => s.classList.toggle('is-active', s.dataset.pShot === id));
+    if (noEl) noEl.textContent = p.no;
+    if (nameEl) nameEl.textContent = p.n;
+    if (textEl) textEl.textContent = p.t;
+  };
+
+  nodes.forEach((node) => {
+    node.addEventListener('click', () => selectPillar(node.dataset.id!));
+    node.addEventListener('mouseenter', () => selectPillar(node.dataset.id!));
+    node.addEventListener('focus', () => selectPillar(node.dataset.id!));
+    node.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectPillar(node.dataset.id!);
+      }
+    });
+  });
+
+  const cmp = document.getElementById('compare');
+  const range = cmp?.querySelector<HTMLInputElement>('.cmp-range');
+  range?.addEventListener('input', () => cmp!.style.setProperty('--pos', `${range.value}%`));
+  cmp?.addEventListener('pointermove', (e) => {
+    if ((e as PointerEvent).pointerType !== 'mouse') return;
+    const r = cmp.getBoundingClientRect();
+    const v = Math.min(95, Math.max(5, ((e.clientX - r.left) / r.width) * 100));
+    cmp.style.setProperty('--pos', `${v}%`);
+    if (range) range.value = String(v);
+  });
+</script>

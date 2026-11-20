@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  title: string;
+  kicker: string;
+  sections: string[];
+}
+const { title, kicker, sections } = Astro.props;
+---
+
+<BaseLayout title={title} current="legal" theme="blue" description={`${title} — GALACTI`}>
+  <section class="legal">
+    <div class="wrap inner">
+      <p class="eyebrow" data-reveal="fade">{kicker}</p>
+      <h1 class="h2" data-split>{title}</h1>
+      <p class="lead" data-reveal="up">
+        O texto oficial será disponibilizado pela GALACTI antes do lançamento. Esta página é o endereço permanente
+        reservado para o documento, garantindo que todos os links do site já funcionem normalmente.
+      </p>
+      <ol class="outline">
+        {
+          sections.map((s, i) => (
+            <li>
+              <span class="figure-no">0{i + 1}</span>
+              <span>{s}</span>
+              <em class="caption">A ser disponibilizado</em>
+            </li>
+          ))
+        }
+      </ol>
+      <a href="/contact/" class="link-arrow">Dúvidas? Entre em contato <span class="rule"></span></a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal {
+    min-height: 100vh;
+    padding: calc(var(--header-h) + clamp(4rem, 9vw, 9rem)) 0 clamp(5rem, 9vw, 9rem);
+    background: radial-gradient(70% 45% at 80% 0%, rgba(27, 63, 143, 0.28), transparent 70%), var(--space);
+  }
+  .inner {
+    display: grid;
+    gap: 2.2rem;
+    max-width: 62rem;
+    margin-inline: 0;
+  }
+  .outline {
+    display: grid;
+    margin-block: 1.5rem;
+  }
+  .outline li {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr auto;
+    gap: 1rem;
+    align-items: baseline;
+    padding-block: 1.1rem;
+    border-top: 1px solid var(--line);
+  }
+  .outline li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .outline em {
+    font-style: normal;
+  }
+  @media (max-width: 560px) {
+    .outline li {
+      grid-template-columns: 2.5rem 1fr;
+    }
+    .outline em {
+      grid-column: 2;
+    }
+  }
+</style>

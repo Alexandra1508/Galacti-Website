@@ -1,0 +1,447 @@
+---
+import Logo from './Logo.astro';
+import { nav } from '../data/site';
+
+interface Props {
+  current?: string;
+}
+const { current = '' } = Astro.props;
+const centerLinks = nav.filter((item) => item.key !== 'contact');
+---
+
+<header class="site-header" id="site-header" data-state="top">
+  <div class="header-frame">
+    <nav class="fx-nav border-gradient" id="fx-nav-bar" aria-label="Navegação principal">
+      <span class="fx-nav-sheen" id="fx-nav-sheen" aria-hidden="true"></span>
+
+      <a href="/" class="brand" aria-label="GALACTI — Início">
+        <span class="brand-badge border-gradient" aria-hidden="true">
+          <Logo size={22} />
+        </span>
+        <span class="brand-name">GALACTI</span>
+      </a>
+
+      <ul class="primary">
+        {
+          centerLinks.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={['nav-link', { 'is-current': current === item.key }]}
+                aria-current={current === item.key ? 'page' : undefined}
+              >
+                <span>{item.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="actions">
+        <div class="edition-pill border-gradient" title="Cosmic Blue & Eclipse Grey">
+          <span class="swatches" aria-hidden="true">
+            <i class="sw sw-blue"></i>
+            <i class="sw sw-grey"></i>
+          </span>
+          <span class="pill-label">Cosmic · Eclipse</span>
+        </div>
+
+        <a
+          href="/contact/"
+          class:list={['contact-pill border-gradient', { 'is-current': current === 'contact' }]}
+          aria-current={current === 'contact' ? 'page' : undefined}
+        >
+          <span>Contato</span>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m13 6 6 6-6 6"></path>
+          </svg>
+        </a>
+
+        <button
+          type="button"
+          class="menu-btn border-gradient"
+          id="menu-btn"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Abrir menu"
+        >
+          <span class="menu-label sr-only">Menu</span>
+          <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+    <div class="mobile-panel fx-card border-gradient">
+      <nav aria-label="Navegação móvel">
+        <ul>
+          {
+            nav.map((item, i) => (
+              <li style={`--i:${i}`}>
+                <a href={item.href} class:list={['m-link', { 'is-current': current === item.key }]}>
+                  <span class="m-no">0{i + 1}</span>
+                  <span class="m-text">{item.label}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <div class="m-foot">
+        <span class="swatches" aria-hidden="true">
+          <i class="sw sw-blue"></i>
+          <i class="sw sw-grey"></i>
+        </span>
+        <span class="caption">GALACTI · Além do extraordinário</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 90;
+    padding: 1rem var(--pad) 0;
+    color: var(--ice);
+    pointer-events: none;
+    transition: padding 0.4s var(--ease);
+  }
+  .site-header[data-state='solid'] {
+    padding-top: 0.65rem;
+  }
+
+  .header-frame {
+    max-width: 86rem;
+    margin-inline: auto;
+    pointer-events: auto;
+  }
+
+  .fx-nav {
+    position: relative;
+    overflow: hidden;
+    border-radius: 9999px;
+    padding: 0.55rem 0.65rem 0.55rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    background: rgba(10, 12, 18, 0.58);
+    -webkit-backdrop-filter: blur(22px) saturate(1.3);
+    backdrop-filter: blur(22px) saturate(1.3);
+    box-shadow:
+      0 18px 48px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition:
+      background-color 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+  .site-header[data-state='solid'] .fx-nav {
+    background: rgba(8, 10, 15, 0.86);
+    box-shadow:
+      0 22px 60px rgba(0, 0, 0, 0.75),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .fx-nav-sheen {
+    pointer-events: none;
+    position: absolute;
+    top: -60px;
+    left: var(--sheen-x, 50%);
+    width: 240px;
+    height: 140px;
+    transform: translateX(-50%);
+    background: radial-gradient(
+      ellipse at center,
+      rgba(96, 165, 250, 0.18) 0%,
+      rgba(255, 255, 255, 0.06) 38%,
+      transparent 72%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .fx-nav:hover .fx-nav-sheen {
+    opacity: 1;
+  }
+
+  .brand {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-shrink: 0;
+  }
+  .brand-badge {
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    transition:
+      transform 0.45s var(--ease),
+      background-color 0.3s ease;
+  }
+  .brand:hover .brand-badge {
+    transform: scale(1.06) rotate(-18deg);
+    background: rgba(96, 165, 250, 0.14);
+  }
+  .brand-name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.2rem;
+    letter-spacing: 0.36em;
+    margin-right: -0.36em;
+  }
+
+  .primary {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: clamp(1.1rem, 2.2vw, 2.4rem);
+  }
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    padding-block: 0.4rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(248, 250, 252, 0.76);
+    white-space: nowrap;
+    transition:
+      color 0.3s ease,
+      opacity 0.3s ease;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-strong), transparent);
+    transform: translateX(-50%) scaleX(0);
+    transition: transform 0.38s var(--ease);
+  }
+  .primary:hover .nav-link:not(:hover) {
+    opacity: 0.46;
+  }
+  .nav-link:hover,
+  .nav-link.is-current {
+    color: #ffffff;
+  }
+  .nav-link:hover::after,
+  .nav-link.is-current::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  .actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-shrink: 0;
+  }
+
+  .edition-pill {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.42rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+  @media (min-width: 1120px) {
+    .edition-pill {
+      display: inline-flex;
+    }
+  }
+  .swatches {
+    display: inline-flex;
+    align-items: center;
+  }
+  .sw {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    display: inline-block;
+  }
+  .sw-blue {
+    background: #60a5fa;
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.85);
+  }
+  .sw-grey {
+    background: #64748b;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    margin-left: -0.15rem;
+  }
+  .pill-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--secondary);
+  }
+
+  .contact-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.52rem 1.05rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #ffffff;
+    transition:
+      background-color 0.3s ease,
+      transform 0.35s var(--ease),
+      box-shadow 0.35s ease;
+  }
+  .contact-pill svg {
+    transition: transform 0.35s var(--ease);
+  }
+  .contact-pill:hover,
+  .contact-pill.is-current {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 28px var(--accent-soft);
+  }
+  .contact-pill:hover svg {
+    transform: translateX(3px);
+  }
+
+  .menu-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .menu-icon {
+    position: relative;
+    width: 1rem;
+    height: 0.55rem;
+  }
+  .menu-icon i {
+    position: absolute;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    transition:
+      transform 0.45s var(--ease),
+      width 0.45s var(--ease),
+      top 0.45s var(--ease);
+  }
+  .menu-icon i:nth-child(1) {
+    top: 0;
+    width: 100%;
+  }
+  .menu-icon i:nth-child(2) {
+    top: 100%;
+    width: 65%;
+    right: 0;
+    left: auto;
+  }
+  .menu-open .menu-icon i:nth-child(1) {
+    top: 50%;
+    transform: rotate(45deg);
+  }
+  .menu-open .menu-icon i:nth-child(2) {
+    top: 50%;
+    width: 100%;
+    transform: rotate(-45deg);
+  }
+
+  /* Mobile menu drawer */
+  .mobile-menu {
+    position: fixed;
+    inset: calc(var(--header-h) + 0.25rem) var(--pad) auto var(--pad);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-12px);
+    visibility: hidden;
+    transition:
+      opacity 0.35s ease,
+      transform 0.45s var(--ease),
+      visibility 0.35s;
+  }
+  .menu-open .mobile-menu {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .mobile-panel {
+    padding: 1.5rem 1.75rem;
+    background: rgba(8, 10, 16, 0.94);
+    display: grid;
+    gap: 1.25rem;
+  }
+  .mobile-panel ul {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .m-link {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .m-no {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    color: var(--champagne);
+  }
+  .m-text {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 300;
+  }
+  .m-link.is-current .m-text {
+    color: var(--accent-strong);
+    font-style: italic;
+  }
+  .m-foot {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 0.25rem;
+  }
+
+  @media (max-width: 980px) {
+    .primary {
+      display: none;
+    }
+    .contact-pill {
+      display: none;
+    }
+    .menu-btn {
+      display: inline-flex;
+    }
+  }
+</style>

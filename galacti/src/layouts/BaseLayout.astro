@@ -1,0 +1,269 @@
+---
+import '@fontsource/cormorant-garamond/300.css';
+import '@fontsource/cormorant-garamond/300-italic.css';
+import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource/cormorant-garamond/400-italic.css';
+import '@fontsource-variable/manrope';
+import '../styles/global.css';
+
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Logo from '../components/Logo.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  theme?: 'blue' | 'grey';
+  current?: string;
+  ogImage?: string;
+}
+const {
+  title,
+  description = 'GALACTI — uma casa europeia de hipercarros de luxo. Cosmic Blue e Eclipse Grey. Além do extraordinário.',
+  theme = 'blue',
+  current = '',
+} = Astro.props;
+const fullTitle = current === 'home' ? 'GALACTI — Além do extraordinário' : `${title} — GALACTI`;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#05060b" />
+    <meta name="color-scheme" content="dark" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('reduced');
+        try {
+          var t = sessionStorage.getItem('galacti:tone');
+          if (t) d.setAttribute('data-tone', t);
+          sessionStorage.removeItem('galacti:tone');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body id="top" data-theme={theme} data-page={current}>
+    <a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- Fluxora persistent subtle architectural grid + ambient radial depth -->
+    <div class="atelier-backdrop" aria-hidden="true">
+      <svg class="atelier-grid" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="galacti-grid" width="64" height="64" patternUnits="userSpaceOnUse">
+            <path d="M64 0H0v64" fill="none" stroke="white" stroke-width="0.6"></path>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#galacti-grid)"></rect>
+      </svg>
+      <div class="ambient-glow glow-a"></div>
+      <div class="ambient-glow glow-b"></div>
+    </div>
+
+    <!-- Snappy cinematic page transition curtain (0.55s) -->
+    <div class="curtain" id="curtain" aria-hidden="true">
+      <div class="curtain-core">
+        <Logo size={42} />
+        <span class="curtain-line"></span>
+      </div>
+    </div>
+
+    <!-- Scroll progress: hairline + orbit ring -->
+    <div class="progress-line" aria-hidden="true"><i id="progress-line"></i></div>
+    <div class="progress-orbit" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="48" height="48">
+        <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-opacity=".18"
+        ></circle>
+        <circle
+          id="progress-ring"
+          cx="24"
+          cy="24"
+          r="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-dasharray="125.66"
+          stroke-dashoffset="125.66"
+          transform="rotate(-90 24 24)"></circle>
+      </svg>
+      <span id="progress-num">00</span>
+    </div>
+
+    <SiteHeader current={current} />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <SiteFooter />
+
+    <script>
+      import '../scripts/motion.ts';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  .atelier-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .atelier-grid {
+    width: 100%;
+    height: 100%;
+    opacity: 0.028;
+  }
+  .ambient-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.45;
+  }
+  .glow-a {
+    top: -12vh;
+    left: -10vw;
+    width: 48vw;
+    height: 48vw;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.16), transparent 70%);
+  }
+  .glow-b {
+    bottom: -15vh;
+    right: -10vw;
+    width: 44vw;
+    height: 44vw;
+    background: radial-gradient(circle, rgba(212, 180, 131, 0.08), transparent 70%);
+  }
+  body[data-theme='grey'] .glow-a {
+    background: radial-gradient(circle, rgba(203, 213, 225, 0.11), transparent 70%);
+  }
+  body[data-theme='grey'] .glow-b {
+    background: radial-gradient(circle, rgba(212, 180, 131, 0.12), transparent 70%);
+  }
+
+  .curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: grid;
+    place-items: center;
+    background: var(--space);
+    color: var(--ice);
+    pointer-events: none;
+    visibility: hidden;
+    clip-path: inset(0 0 100% 0);
+  }
+  html[data-tone='blue'] .curtain {
+    background: radial-gradient(80% 80% at 50% 50%, #0d2563, #040a1f 80%);
+  }
+  html[data-tone='grey'] .curtain {
+    background: radial-gradient(80% 80% at 50% 50%, #2a2d33, #08090b 80%);
+  }
+  .curtain-core {
+    display: grid;
+    justify-items: center;
+    gap: 1.2rem;
+    opacity: 0;
+  }
+  .curtain-line {
+    width: 6.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ice), transparent);
+    transform-origin: center;
+  }
+  .curtain.is-leaving {
+    visibility: visible;
+    animation: curtain-in 0.42s var(--ease-in-out) forwards;
+    pointer-events: all;
+  }
+  .curtain.is-leaving .curtain-core {
+    animation: core-in 0.42s ease 0.08s both;
+  }
+  .curtain.is-leaving .curtain-line {
+    animation: line-pulse 0.45s var(--ease) both;
+  }
+  @keyframes curtain-in {
+    from {
+      clip-path: inset(100% 0 0 0);
+      visibility: visible;
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+      visibility: visible;
+    }
+  }
+  @keyframes core-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes line-pulse {
+    from {
+      transform: scaleX(0);
+    }
+  }
+
+  .progress-line {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 2px;
+    z-index: 120;
+    pointer-events: none;
+  }
+  .progress-line i {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, var(--accent-strong));
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .progress-orbit {
+    position: fixed;
+    left: 1.15rem;
+    bottom: 1.15rem;
+    z-index: 80;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    color: var(--ice);
+    opacity: 0.65;
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+  .progress-orbit svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .progress-orbit span {
+    font-family: var(--serif);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    font-variant-numeric: lining-nums;
+  }
+  @media (max-width: 720px) {
+    .progress-orbit {
+      display: none;
+    }
+  }
+</style>

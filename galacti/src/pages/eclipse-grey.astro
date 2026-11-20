@@ -1,0 +1,462 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroVideo from '../components/HeroVideo.astro';
+import Photo from '../components/Photo.astro';
+import { blue, grey, craft, video, alt } from '../data/media';
+
+const archive = [
+  { s: grey.front, a: alt.greyFront, c: 'Estudo em Estúdio sob Anel Eclipse' },
+  { s: grey.mist, a: alt.greyMist, c: 'Presença Frontal na Névoa Noturna' },
+  { s: grey.rear, a: alt.greyRear, c: 'Rastros de Movimento — Traseira' },
+  { s: grey.fender, a: alt.greyFender, c: 'Para-lama Esculpido & Saia Lateral' },
+  { s: grey.wheel, a: alt.greyWheel, c: 'Roda Forjada Multirraios' },
+  { s: grey.exhaust, a: alt.greyExhaust, c: 'Escape Central & Difusor em Carbono' },
+];
+---
+
+<BaseLayout
+  title="Eclipse Grey"
+  current="eclipse-grey"
+  theme="grey"
+  description="GALACTI Eclipse Grey — A arte do silêncio. Grafite líquido, sombras de titânio e presença europeia discreta e imponente."
+>
+  <!-- ============ HERO ============ -->
+  <HeroVideo
+    id="grey-film"
+    src={video.grey}
+    poster={grey.front}
+    tone="grey"
+    variant="eclipse"
+    label="GALACTI Eclipse Grey — filme cinematográfico"
+    telemetryLeft="EDIÇÃO 02 · GALACTI ECLIPSE GREY"
+    telemetryRight={[
+      { label: 'ASSINATURA', value: 'ECLIPSE GREY' },
+      { label: 'ATMOSFERA', value: 'GRAFITE & TITÂNIO' },
+    ]}
+  >
+    <div class="hero-copy-grey">
+      <span class="eclipse-mark" aria-hidden="true"></span>
+      <span class="eyebrow no-rule" data-reveal="fade" style="color:var(--champagne)">GALACTI · Edição 02</span>
+      <h1 class="display" data-split>Eclipse Grey</h1>
+      <p class="tagline serif" data-reveal="up" data-delay="180">“A arte do silêncio.”</p>
+    </div>
+  </HeroVideo>
+
+  <!-- ============ SEÇÃO (01) — MANIFESTO MONOLÍTICO ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>01 · Manifesto Monolítico</span>
+        <span>(01)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="mono-grid">
+        <div class="mono-copy" data-reveal="up">
+          <span class="eyebrow" style="color:var(--champagne)">Autoridade Silenciosa</span>
+          <h2 class="h2">Onde o excesso recua,<br /><em>permanece a forma pura.</em></h2>
+          <p class="lead">
+            O GALACTI Eclipse Grey é concebido para quem prefere a sobriedade soberana ao espetáculo. O grafite acetinado líquido absorve o brilho ambiente, devolvendo apenas reflexos precisos sobre linhas de titânio escovado.
+          </p>
+
+          <div class="tonal-bars">
+            <div class="tbar">
+              <i style="background:#111318"></i>
+              <strong>Grafite Profundo</strong>
+              <span class="caption">Carroceria Principal</span>
+            </div>
+            <div class="tbar">
+              <i style="background:#4b525d"></i>
+              <strong>Titânio Líquido</strong>
+              <span class="caption">Metálico Acetinado</span>
+            </div>
+            <div class="tbar">
+              <i style="background:#cbd5e1"></i>
+              <strong>Prata Escovado</strong>
+              <span class="caption">Aresta Especular</span>
+            </div>
+            <div class="tbar">
+              <i style="background:#d4b483"></i>
+              <strong>Ouro Champagne</strong>
+              <span class="caption">Detalhe de Ateliê</span>
+            </div>
+          </div>
+        </div>
+
+        <figure class="fx-frame border-gradient mono-frame" data-reveal="up" data-delay="120">
+          <div class="fx-frame-inner">
+            <Photo src={grey.front} alt={alt.greyFront} zoomed sizes="(min-width: 960px) 52vw, 94vw" />
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (02) — TRÍPTICO CHIAROSCURO ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>02 · Estudos de Sombra &amp; Movimento</span>
+        <span>(02)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="triptych">
+        <article class="tri-card fx-card border-gradient" data-reveal="up">
+          <div class="tri-media frame">
+            <Photo src={grey.track} alt={alt.greyTrack} sizes="(min-width: 900px) 28vw, 92vw" />
+          </div>
+          <div class="tri-body">
+            <span class="figure-no">/ I</span>
+            <h3 class="h3">Aproximação Noturna</h3>
+            <p>Emergindo sobre o asfalto escuro e úmido sob iluminação arquitetônica fria.</p>
+          </div>
+        </article>
+
+        <article class="tri-card tri-elevated fx-card border-gradient" data-reveal="up" data-delay="110">
+          <div class="tri-media frame">
+            <video
+              data-autoplay
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              disablepictureinpicture
+              aria-label="Estudo em vídeo GALACTI Eclipse Grey"
+            >
+              <source src={video.grey} type="video/mp4" />
+            </video>
+          </div>
+          <div class="tri-body">
+            <span class="figure-no">/ II</span>
+            <h3 class="h3">Velocidade em Silêncio</h3>
+            <p>Movimento contínuo emoldurado em grafite líquido, vapor e lâminas duplas de LED.</p>
+          </div>
+        </article>
+
+        <article class="tri-card fx-card border-gradient" data-reveal="up" data-delay="220">
+          <div class="tri-media frame">
+            <Photo src={grey.rear} alt={alt.greyRear} sizes="(min-width: 900px) 28vw, 92vw" />
+          </div>
+          <div class="tri-body">
+            <span class="figure-no">/ III</span>
+            <h3 class="h3">Rastro Luminoso</h3>
+            <p>Ombros traseiros musculosos e anéis incandescentes deixando traços de luz em seu percurso.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (03) — FORMA, SOMBRA & MATERIALIDADE ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>03 · Arquitetura Esculpida &amp; Materiais Forjados</span>
+        <span>(03)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="plates-layout">
+        <figure class="fx-frame border-gradient plate-large" data-reveal="up">
+          <div class="fx-frame-inner">
+            <Photo src={grey.fender} alt={alt.greyFender} sizes="(min-width: 960px) 58vw, 94vw" />
+          </div>
+        </figure>
+
+        <div class="plates-stack">
+          <article class="fx-card border-gradient mini-plate" data-reveal="up" data-delay="100">
+            <div class="mini-img frame">
+              <Photo src={grey.wheel} alt={alt.greyWheel} sizes="(min-width: 960px) 32vw, 92vw" />
+            </div>
+            <div class="mini-copy">
+              <span class="caption">Geometria Forjada</span>
+              <h3 class="h3">Postura em Titânio Usinado</h3>
+              <p>Geometria multirraios em turbina aliada a discos cerâmicos e pinças anodizadas escuras.</p>
+            </div>
+          </article>
+
+          <article class="fx-card border-gradient mini-plate" data-reveal="up" data-delay="180">
+            <div class="mini-img frame">
+              <Photo src={craft.carbon} alt={alt.craftCarbon} sizes="(min-width: 960px) 32vw, 92vw" />
+            </div>
+            <div class="mini-copy">
+              <span class="caption">Textura de Superfície</span>
+              <h3 class="h3">Trama em Carbono Forjado</h3>
+              <p>Fibras de carbono foscas em orientação orgânica criando profundidade sem brilho ostensivo.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (04) — ARQUIVO & TRANSIÇÃO ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>04 · Pranchas Eclipse Grey</span>
+        <span>(04)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="archive-grid">
+        {
+          archive.map((item, idx) => (
+            <button
+              type="button"
+              class="arch-tile fx-card border-gradient"
+              data-lightbox="grey"
+              data-caption={`Eclipse Grey — ${item.c}`}
+              data-reveal="up"
+              data-delay={idx * 60}
+              aria-label={`Ampliar: ${item.c}`}
+            >
+              <div class="arch-img frame">
+                <Photo src={item.s} alt={item.a} sizes="(min-width: 900px) 30vw, 92vw" />
+              </div>
+              <div class="arch-meta">
+                <span class="figure-no">0{idx + 1}</span>
+                <span class="caption">{item.c}</span>
+              </div>
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Passagem para Cosmic Blue -->
+      <div class="crossover fx-card border-gradient" data-reveal="up">
+        <div class="cross-copy">
+          <span class="eyebrow" style="color:#93c5fd">A Outra Expressão</span>
+          <h2 class="h2">Entre sob <em>a luz das estrelas.</em></h2>
+          <p class="lead">
+            Conheça o contraponto luminoso em azul cósmico ao Eclipse Grey — energia e profundidade em órbita contínua.
+          </p>
+          <a href="/cosmic-blue/" class="pill-btn border-gradient">
+            <span>Explorar Cosmic Blue</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path d="M5 12h14"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="cross-img frame">
+          <Photo src={blue.front} alt={alt.front} sizes="(min-width: 900px) 46vw, 92vw" />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-copy-grey {
+    position: absolute;
+    right: var(--pad);
+    bottom: clamp(4.8rem, 12vh, 8rem);
+    display: grid;
+    justify-items: end;
+    text-align: right;
+    gap: 1rem;
+    max-width: 44rem;
+  }
+  .eclipse-mark {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: #060709;
+    box-shadow:
+      0 0 0 1px rgba(248, 250, 252, 0.78),
+      0 0 1.4rem rgba(212, 180, 131, 0.35);
+  }
+  .tagline {
+    font-size: clamp(1.2rem, 2.1vw, 1.85rem);
+    font-style: italic;
+    color: var(--champagne);
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 720px) {
+    .hero-copy-grey {
+      left: var(--pad);
+      justify-items: start;
+      text-align: left;
+    }
+  }
+
+  /* Manifesto */
+  .mono-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+  .mono-copy {
+    display: grid;
+    gap: 1.4rem;
+  }
+  .mono-frame .fx-frame-inner {
+    aspect-ratio: 16 / 10;
+  }
+  .tonal-bars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  .tbar {
+    padding: 0.9rem 1rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--line);
+    display: grid;
+    gap: 0.25rem;
+  }
+  .tbar i {
+    width: 100%;
+    height: 4px;
+    border-radius: 999px;
+    margin-bottom: 0.35rem;
+  }
+  .tbar strong {
+    font-size: 0.84rem;
+    font-weight: 500;
+  }
+  @media (max-width: 960px) {
+    .mono-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Triptych */
+  .triptych {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 2.2vw, 2rem);
+    align-items: start;
+  }
+  @media (min-width: 960px) {
+    .tri-elevated {
+      margin-top: 2.25rem;
+    }
+  }
+  @media (max-width: 900px) {
+    .triptych {
+      grid-template-columns: 1fr;
+    }
+  }
+  .tri-card {
+    padding: 0.75rem;
+    display: grid;
+    gap: 0.85rem;
+  }
+  .tri-media {
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+  }
+  .tri-body {
+    padding: 0.4rem 0.75rem 0.9rem;
+    display: grid;
+    gap: 0.45rem;
+  }
+  .tri-body p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* Plates layout */
+  .plates-layout {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+    align-items: center;
+  }
+  .plate-large .fx-frame-inner {
+    aspect-ratio: 16 / 10;
+  }
+  .plates-stack {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .mini-plate {
+    padding: 0.75rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .mini-img {
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+  }
+  .mini-copy {
+    padding: 0.35rem 0.65rem 0.7rem;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .mini-copy p {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  @media (max-width: 960px) {
+    .plates-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Archive Grid */
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) {
+    .archive-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .arch-tile {
+    padding: 0.7rem;
+    display: grid;
+    gap: 0.75rem;
+    text-align: left;
+    cursor: zoom-in;
+  }
+  .arch-img {
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+  }
+  .arch-img :global(img) {
+    transition: transform 0.85s var(--ease);
+  }
+  .arch-tile:hover .arch-img :global(img) {
+    transform: scale(1.05);
+  }
+  .arch-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.15rem 0.5rem 0.4rem;
+  }
+
+  /* Crossover */
+  .crossover {
+    margin-top: clamp(3rem, 6vw, 5rem);
+    padding: clamp(1.25rem, 3vw, 2.25rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+  .cross-img {
+    aspect-ratio: 16 / 10;
+  }
+  .cross-copy {
+    display: grid;
+    gap: 1.25rem;
+    justify-items: start;
+  }
+  @media (max-width: 860px) {
+    .crossover {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

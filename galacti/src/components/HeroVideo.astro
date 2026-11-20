@@ -1,0 +1,435 @@
+---
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  id: string;
+  src: string; // /media/video/*.mp4
+  poster: ImageMetadata;
+  tone?: 'blue' | 'grey';
+  label: string;
+  variant?: 'orbit' | 'eclipse';
+  telemetryLeft?: string;
+  telemetryRight?: { label: string; value: string }[];
+}
+const {
+  id,
+  src,
+  poster,
+  tone = 'blue',
+  label,
+  variant = 'orbit',
+  telemetryLeft = 'ATELIÊ GALACTI · SÉRIE I',
+  telemetryRight = [],
+} = Astro.props;
+const p = await getImage({ src: poster, width: 1376, format: 'webp', quality: 82 });
+---
+
+<section class={`hero hero-${tone} hero-${variant}`} data-hero data-scrub="exit" aria-label={label}>
+  <div class="stage">
+    <video
+      id={id}
+      class="film"
+      data-autoplay
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster={p.src}
+      disablepictureinpicture
+      disableremoteplayback
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- Subtle edge vignette — preserves 100% clarity of the protagonist hypercar -->
+  <div class="grade" aria-hidden="true"></div>
+  <canvas class="stars" data-starfield data-tint={tone} data-density="0.32" aria-hidden="true"></canvas>
+
+  {
+    variant === 'orbit' ? (
+      <div class="orbits" aria-hidden="true" data-mouse="12">
+        <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" fill="none">
+          <ellipse
+            id={`${id}-o1`}
+            cx="800"
+            cy="460"
+            rx="760"
+            ry="255"
+            transform="rotate(-9 800 460)"
+            stroke="rgba(248,250,252,.16)"
+            stroke-width="1"
+          />
+          <ellipse
+            cx="800"
+            cy="460"
+            rx="560"
+            ry="155"
+            transform="rotate(-9 800 460)"
+            stroke="rgba(147,197,253,.18)"
+            stroke-width="1"
+            stroke-dasharray="2 10"
+          />
+          <circle r="3" fill="#eef2f8">
+            <animateMotion dur="38s" repeatCount="indefinite" rotate="auto">
+              <mpath href={`#${id}-o1`} />
+            </animateMotion>
+          </circle>
+          <circle r="13" fill="rgba(147,197,253,.14)">
+            <animateMotion dur="38s" repeatCount="indefinite" rotate="auto">
+              <mpath href={`#${id}-o1`} />
+            </animateMotion>
+          </circle>
+        </svg>
+      </div>
+    ) : (
+      <div class="eclipse-hud" aria-hidden="true" data-mouse="10">
+        <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" fill="none">
+          <circle cx="800" cy="450" r="380" stroke="rgba(203,213,225,.14)" stroke-width="0.9" stroke-dasharray="3 10" />
+          <circle cx="800" cy="450" r="490" stroke="rgba(212,180,131,.11)" stroke-width="0.7" />
+        </svg>
+      </div>
+    )
+  }
+
+  <!-- Peripheral aerospace reticles & telemetry (Spyker + Fluxora cues) -->
+  <div class="hud-frame" aria-hidden="true">
+    <span class="reticle r-tl">+</span>
+    <span class="reticle r-tr">+</span>
+    <aside class="side-rail">
+      <span class="rail-line"></span>
+      <span>{telemetryLeft}</span>
+    </aside>
+    {
+      telemetryRight.length > 0 && (
+        <aside class="side-specs">
+          {telemetryRight.map((item) => (
+            <div class="spec-item">
+              <span>{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))}
+        </aside>
+      )
+    }
+  </div>
+
+  <div class="hero-copy">
+    <slot />
+  </div>
+
+  <a href="#after-hero" class="cue" aria-label="Rolar para explorar">
+    <span class="caption">Explorar</span>
+    <i></i>
+  </a>
+
+  <!-- Controle mínimo e sempre visível de áudio original — canto inferior direito -->
+  <button
+    type="button"
+    class="audio border-gradient"
+    data-audio={`#${id}`}
+    aria-pressed="false"
+    aria-label="Ativar som do vídeo"
+  >
+    <span class="audio-label caption">Som desligado</span>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.35"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"></path>
+      <path class="w1" d="M15.2 9.2a4 4 0 0 1 0 5.6"></path>
+      <path class="w2" d="M18 6.8a7.6 7.6 0 0 1 0 10.4"></path>
+      <path class="x" d="M15.5 9.5l5 5M20.5 9.5l-5 5"></path>
+    </svg>
+  </button>
+</section>
+<span id="after-hero"></span>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    min-height: 36rem;
+    overflow: hidden;
+    background: var(--space);
+    isolation: isolate;
+    --p: 0;
+  }
+  .stage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .film {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    background: var(--space);
+    scale: calc(1 + var(--p) * 0.08);
+    will-change: scale;
+  }
+  .grade {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(5, 6, 11, 0.52) 0%, rgba(5, 6, 11, 0) 24%),
+      linear-gradient(0deg, rgba(5, 6, 11, 0.86) 0%, rgba(5, 6, 11, 0.28) 26%, rgba(5, 6, 11, 0) 48%),
+      radial-gradient(110% 85% at 50% 45%, transparent 56%, rgba(5, 6, 11, 0.5) 100%);
+  }
+  .hero-blue .grade::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(50% 38% at 14% 92%, rgba(59, 130, 246, 0.24), transparent 70%);
+    mix-blend-mode: screen;
+  }
+  .hero-grey .grade::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(50% 38% at 86% 90%, rgba(212, 180, 131, 0.14), transparent 70%);
+    mix-blend-mode: screen;
+  }
+  .stars {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.65;
+  }
+  .orbits,
+  .eclipse-hud {
+    position: absolute;
+    inset: -4%;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .orbits svg,
+  .eclipse-hud svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hud-frame {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+  }
+  .reticle {
+    position: absolute;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(248, 250, 252, 0.3);
+  }
+  .r-tl {
+    top: 6rem;
+    left: var(--pad);
+  }
+  .r-tr {
+    top: 6rem;
+    right: var(--pad);
+  }
+
+  .side-rail {
+    position: absolute;
+    left: var(--pad);
+    top: 46%;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: left center;
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(226, 232, 240, 0.55);
+  }
+  .rail-line {
+    width: 24px;
+    height: 1px;
+    background: var(--champagne);
+    opacity: 0.6;
+  }
+  .side-specs {
+    position: absolute;
+    right: var(--pad);
+    top: 46%;
+    transform: translateY(-50%);
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.1rem;
+  }
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
+    padding-right: 0.75rem;
+    border-right: 1px solid rgba(212, 180, 131, 0.45);
+  }
+  .spec-item span {
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .spec-item strong {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--ice);
+  }
+  @media (min-width: 1100px) {
+    .side-rail,
+    .side-specs {
+      display: flex;
+    }
+  }
+
+  .hero-copy {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    translate: 0 calc(var(--p) * -5vh);
+  }
+  .hero-copy :global(a),
+  .hero-copy :global(button) {
+    pointer-events: auto;
+  }
+
+  .cue {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(1.4rem, 3.2vh, 2.2rem);
+    translate: -50% 0;
+    z-index: 6;
+    display: grid;
+    justify-items: center;
+    gap: 0.65rem;
+    color: rgba(248, 250, 252, 0.8);
+    opacity: calc(1 - var(--p) * 3.5);
+  }
+  .cue i {
+    position: relative;
+    width: 1px;
+    height: 2.5rem;
+    background: rgba(248, 250, 252, 0.24);
+    overflow: hidden;
+  }
+  .cue i::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    animation: cue 2.4s var(--ease-in-out) infinite;
+  }
+  @keyframes cue {
+    0% {
+      transform: translateY(-100%);
+    }
+    55%,
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  /* Minimal bottom-right audio control */
+  .audio {
+    position: absolute;
+    right: var(--pad);
+    bottom: clamp(1.3rem, 3.2vh, 2.2rem);
+    z-index: 7;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 9999px;
+    background: rgba(10, 12, 18, 0.45);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    color: rgba(248, 250, 252, 0.86);
+    transition:
+      color 0.35s ease,
+      background-color 0.35s ease;
+  }
+  .audio:hover {
+    color: #fff;
+    background: rgba(10, 12, 18, 0.72);
+  }
+  .audio svg {
+    overflow: visible;
+    transition: transform 0.4s var(--ease);
+  }
+  .audio:hover svg {
+    transform: scale(1.08);
+  }
+  .audio .x {
+    transition: opacity 0.3s ease;
+  }
+  .audio .w1,
+  .audio .w2 {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .audio.is-on .x {
+    opacity: 0;
+  }
+  .audio.is-on .w1,
+  .audio.is-on .w2 {
+    opacity: 1;
+    animation: wave 1.4s ease-in-out infinite;
+  }
+  .audio.is-on .w2 {
+    animation-delay: 0.25s;
+  }
+  @keyframes wave {
+    50% {
+      opacity: 0.28;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .audio .audio-label {
+      display: none;
+    }
+    .audio {
+      padding: 0.55rem;
+    }
+    .cue {
+      display: none;
+    }
+    .reticle {
+      display: none;
+    }
+    .film {
+      object-position: 56% center;
+    }
+  }
+  @media (max-height: 560px) and (orientation: landscape) {
+    .cue {
+      display: none;
+    }
+  }
+</style>

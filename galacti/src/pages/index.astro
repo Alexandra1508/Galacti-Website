@@ -1,0 +1,717 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroVideo from '../components/HeroVideo.astro';
+import Photo from '../components/Photo.astro';
+import { blue, grey, craft, video, alt } from '../data/media';
+---
+
+<BaseLayout title="Início" current="home" theme="blue">
+  <!-- ============ HERO — GALACTI Cosmic Blue 100vw × 100vh ============ -->
+  <HeroVideo
+    id="hero-film"
+    src={video.blue}
+    poster={blue.profile}
+    tone="blue"
+    label="GALACTI Cosmic Blue — filme cinematográfico de abertura"
+    telemetryLeft="ATELIÊ GALACTI · SÉRIE I"
+    telemetryRight={[
+      { label: 'EXPRESSÃO 01', value: 'COSMIC BLUE' },
+      { label: 'EXPRESSÃO 02', value: 'ECLIPSE GREY' },
+    ]}
+  >
+    <div class="hero-editorial">
+      <div class="hero-pill border-gradient" data-reveal="fade">
+        <span class="pill-badge">Série I</span>
+        <span>Duas Expressões Exclusivas · Uma Mesma Origem</span>
+      </div>
+
+      <h1 class="hero-title" data-split>
+        Além do<br />
+        <em>horizonte</em> do movimento.
+      </h1>
+
+      <p class="hero-lead" data-reveal="up" data-delay="180">
+        A alta manufatura europeia encontra a imensidão silenciosa do cosmos. Duas expressões esculpidas com precisão, luz e propósito.
+      </p>
+
+      <div class="hero-actions" data-reveal="up" data-delay="300">
+        <a href="/cosmic-blue/" class="pill-btn pill-btn-primary">
+          <span>Explorar Cosmic Blue</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M5 12h14"></path>
+            <path d="m13 6 6 6-6 6"></path>
+          </svg>
+        </a>
+        <a href="/eclipse-grey/" class="pill-btn border-gradient">
+          <span>Explorar Eclipse Grey</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M5 12h14"></path>
+            <path d="m13 6 6 6-6 6"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </HeroVideo>
+
+  <!-- ============ SEÇÃO (01) — COMPARADOR CINEMATOGRÁFICO AO VIVO ============ -->
+  <section class="section duality-section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>Dualidade · Duas Expressões de Uma Origem</span>
+        <span>(01)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="duality-head">
+        <h2 class="h2" data-split>
+          Dois mundos dentro da <em>mesma constelação.</em>
+        </h2>
+        <p class="lead" data-reveal="up">
+          Arraste a linha do horizonte para comparar a profundidade elétrica do Cosmic Blue à serenidade noturna do Eclipse Grey — ambos os filmes em execução contínua.
+        </p>
+      </div>
+
+      <div class="fx-frame border-gradient" data-reveal="up" data-delay="120">
+        <div class="fx-frame-inner split-cinema" id="split-cinema">
+          <div class="split-layer split-grey">
+            <video
+              class="split-video"
+              data-autoplay
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              disablepictureinpicture
+              aria-hidden="true"
+            >
+              <source src={video.grey} type="video/mp4" />
+            </video>
+            <span class="split-tag tag-right border-gradient">
+              <i class="dot dot-grey" aria-hidden="true"></i>
+              <span>GALACTI ECLIPSE GREY</span>
+            </span>
+          </div>
+
+          <div class="split-layer split-blue" id="split-blue-layer">
+            <video
+              class="split-video"
+              data-autoplay
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              disablepictureinpicture
+              aria-hidden="true"
+            >
+              <source src={video.blue} type="video/mp4" />
+            </video>
+            <span class="split-tag tag-left border-gradient">
+              <i class="dot dot-blue" aria-hidden="true"></i>
+              <span>GALACTI COSMIC BLUE</span>
+            </span>
+          </div>
+
+          <div class="split-vignette" aria-hidden="true"></div>
+
+          <div
+            class="split-handle"
+            id="split-handle"
+            role="slider"
+            tabindex="0"
+            aria-label="Comparar GALACTI Cosmic Blue e Eclipse Grey"
+            aria-valuemin="5"
+            aria-valuemax="95"
+            aria-valuenow="50"
+          >
+            <span class="handle-line" aria-hidden="true"></span>
+            <span class="handle-knob border-gradient" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M9 18l-6-6 6-6"></path>
+                <path d="M15 6l6 6-6 6"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (02) — AS DUAS EXPRESSÕES ============ -->
+  <section class="section expressions-section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>As Edições · Cosmic Blue &amp; Eclipse Grey</span>
+        <span>(02)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="expressions-grid">
+        <!-- PAINEL COSMIC BLUE -->
+        <article class="exp-panel fx-card border-gradient" data-reveal="up">
+          <div class="exp-media">
+            <div class="exp-main frame">
+              <Photo src={blue.profile} alt={alt.profile} zoomed sizes="(min-width: 960px) 48vw, 94vw" />
+            </div>
+            <div class="exp-inset frame">
+              <Photo src={blue.front} alt={alt.front} sizes="(min-width: 960px) 22vw, 45vw" />
+            </div>
+          </div>
+
+          <div class="exp-body">
+            <span class="eyebrow">Edição 01 · Cosmic Blue</span>
+            <h3 class="h2">GALACTI Cosmic Blue</h3>
+            <p class="exp-quote serif">“O UNIVERSO EM MOVIMENTO.”</p>
+            <p class="lead">
+              Um azul celestial profundo salpicado por pontos estelares. Flancos esculpidos capturam a luz em cada contorno, expressando movimento mesmo em repouso.
+            </p>
+
+            <ul class="swatch-row" aria-label="Paleta Cosmic Blue">
+              <li><i style="background:#050711"></i><span>Preto Espacial</span></li>
+              <li><i style="background:#0c2461"></i><span>Nebulosa Profunda</span></li>
+              <li><i style="background:#3b82f6"></i><span>Azul Metálico</span></li>
+              <li><i style="background:#e2e8f0"></i><span>Branco Gelo</span></li>
+            </ul>
+
+            <a href="/cosmic-blue/" class="pill-btn border-gradient">
+              <span>Descobrir Cosmic Blue</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- PAINEL ECLIPSE GREY -->
+        <article class="exp-panel exp-panel-reverse fx-card border-gradient" data-reveal="up" data-delay="120">
+          <div class="exp-media">
+            <div class="exp-main frame">
+              <Photo src={grey.front} alt={alt.greyFront} zoomed sizes="(min-width: 960px) 48vw, 94vw" />
+            </div>
+            <div class="exp-inset frame">
+              <video
+                data-autoplay
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                disablepictureinpicture
+                aria-label="GALACTI Eclipse Grey estudo em movimento"
+              >
+                <source src={video.grey} type="video/mp4" />
+              </video>
+            </div>
+          </div>
+
+          <div class="exp-body">
+            <span class="eyebrow" style="color:var(--champagne)">Edição 02 · Eclipse Grey</span>
+            <h3 class="h2">GALACTI Eclipse Grey</h3>
+            <p class="exp-quote serif" style="color:var(--champagne)">“A ARTE DO SILÊNCIO.”</p>
+            <p class="lead">
+              Grafite acetinado líquido e titânio escovado sob um halo lunar solitário. Discreto, imponente e esculpido para quem comanda atenção sem precisá-la buscar.
+            </p>
+
+            <ul class="swatch-row" aria-label="Paleta Eclipse Grey">
+              <li><i style="background:#14161b"></i><span>Grafite Profundo</span></li>
+              <li><i style="background:#4b5563"></i><span>Titânio Líquido</span></li>
+              <li><i style="background:#cbd5e1"></i><span>Prata Escovado</span></li>
+              <li><i style="background:#d4b483"></i><span>Champagne</span></li>
+            </ul>
+
+            <a href="/eclipse-grey/" class="pill-btn border-gradient">
+              <span>Descobrir Eclipse Grey</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (03) — PILARES DO ATELIÊ ============ -->
+  <section class="section atelier-section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>Filosofia do Ateliê · Identidade, Ofício &amp; Forma</span>
+        <span>(03)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="atelier-head">
+        <h2 class="h2" data-split>Cada traço, material e acabamento <em>é intencional.</em></h2>
+        <a href="/design/" class="link-arrow">
+          Explorar Design &amp; Manufatura <span class="rule"></span>
+        </a>
+      </div>
+
+      <div class="bento-grid">
+        <a href="/design/" class="bento-card fx-card border-gradient" data-reveal="up">
+          <div class="bento-img frame">
+            <Photo src={blue.doors} alt={alt.doors} sizes="(min-width: 960px) 30vw, 94vw" />
+          </div>
+          <div class="bento-copy">
+            <span class="figure-no">/ 01</span>
+            <h3 class="h3">Aerodinâmica Esculpida</h3>
+            <p>Geometria de portas diédricas, dutos laterais e fluxo contínuo de carroceria concebidos como escultura funcional.</p>
+          </div>
+        </a>
+
+        <a href="/design/" class="bento-card fx-card border-gradient" data-reveal="up" data-delay="120">
+          <div class="bento-img frame">
+            <Photo src={blue.interior} alt={alt.interior} sizes="(min-width: 960px) 30vw, 94vw" />
+          </div>
+          <div class="bento-copy">
+            <span class="figure-no">/ 02</span>
+            <h3 class="h3">Cockpit Centrado no Condutor</h3>
+            <p>Estofamento noturno costurado à mão, comandos em trama de carbono e arquitetura tátil livre de excessos visuais.</p>
+          </div>
+        </a>
+
+        <a href="/design/" class="bento-card fx-card border-gradient" data-reveal="up" data-delay="220">
+          <div class="bento-img frame">
+            <Photo src={craft.headlight} alt={alt.craftHeadlight} sizes="(min-width: 960px) 30vw, 94vw" />
+          </div>
+          <div class="bento-copy">
+            <span class="figure-no">/ 03</span>
+            <h3 class="h3">Óptica Cristalina &amp; Carbono</h3>
+            <p>Conjuntos ópticos de precisão embutidos em entradas de carbono forjado com sutis frisos metálicos em champagne.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (04) — CONVITE ============ -->
+  <section class="section invite-section">
+    <div class="wrap">
+      <div class="invite-card fx-card border-gradient" data-reveal="up">
+        <div class="invite-bg" aria-hidden="true">
+          <Photo src={blue.rear} alt="" decorative sizes="90vw" />
+          <div class="invite-scrim"></div>
+        </div>
+
+        <div class="invite-content">
+          <span class="eyebrow no-rule">Convite Privado</span>
+          <h2 class="display">Entre no universo <em>Galacti.</em></h2>
+          <p class="lead">
+            Vá além das fichas técnicas e mergulhe em uma atmosfera de luxo europeu, serenidade cósmica e alta manufatura exclusiva.
+          </p>
+          <div class="invite-actions">
+            <a href="/universe/" class="pill-btn border-gradient">
+              <span>O Universo Galacti</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </a>
+            <a href="/contact/" class="pill-btn pill-btn-primary">
+              <span>Experiência Privada</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Editorial Overlay */
+  .hero-editorial {
+    position: absolute;
+    left: var(--pad);
+    right: var(--pad);
+    bottom: clamp(4.5rem, 11vh, 7.5rem);
+    max-width: 44rem;
+    display: grid;
+    gap: 1.25rem;
+    justify-items: start;
+  }
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.35rem 0.9rem 0.35rem 0.4rem;
+    border-radius: 9999px;
+    background: rgba(10, 12, 18, 0.56);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--secondary);
+  }
+  .pill-badge {
+    padding: 0.22rem 0.6rem;
+    border-radius: 9999px;
+    background: rgba(96, 165, 250, 0.22);
+    color: #93c5fd;
+    font-weight: 600;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.85rem, 6.2vw, 6.4rem);
+    line-height: 0.96;
+    letter-spacing: -0.015em;
+    text-shadow: 0 12px 42px rgba(0, 0, 0, 0.72);
+  }
+  .hero-title em {
+    color: var(--accent-strong);
+    font-style: italic;
+  }
+  .hero-lead {
+    max-width: 34rem;
+    font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+    line-height: 1.7;
+    color: rgba(248, 250, 252, 0.88);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 0.35rem;
+  }
+
+  /* Duality Comparator */
+  .duality-head {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: end;
+    margin-bottom: clamp(2rem, 4vw, 3.25rem);
+  }
+  @media (max-width: 860px) {
+    .duality-head {
+      grid-template-columns: 1fr;
+    }
+  }
+  .split-cinema {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 620px;
+    background: #06070c;
+    touch-action: pan-y;
+    user-select: none;
+  }
+  .split-layer {
+    position: absolute;
+    inset: 0;
+  }
+  .split-blue {
+    clip-path: inset(0 50% 0 0);
+  }
+  .split-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+  .split-vignette {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(5, 6, 11, 0.32), transparent 24%, transparent 74%, rgba(5, 6, 11, 0.68));
+    pointer-events: none;
+    z-index: 2;
+  }
+  .split-tag {
+    position: absolute;
+    top: 1.25rem;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.42rem 0.9rem;
+    border-radius: 9999px;
+    background: rgba(8, 10, 15, 0.72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--ice);
+  }
+  .tag-left {
+    left: 1.25rem;
+  }
+  .tag-right {
+    right: 1.25rem;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  .dot-blue {
+    background: #60a5fa;
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.9);
+  }
+  .dot-grey {
+    background: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  .split-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    z-index: 6;
+    width: 44px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: ew-resize;
+  }
+  .handle-line {
+    position: absolute;
+    inset: 0 auto 0 50%;
+    width: 1px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), #93c5fd 50%, #d4b483);
+  }
+  .handle-knob {
+    width: 42px;
+    height: 42px;
+    border-radius: 9999px;
+    background: rgba(8, 10, 16, 0.88);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  /* Expressions Showcase Panels */
+  .expressions-grid {
+    display: grid;
+    gap: clamp(2rem, 4vw, 3.25rem);
+  }
+  .exp-panel {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    align-items: center;
+  }
+  .exp-panel-reverse {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+  .exp-panel-reverse .exp-media {
+    order: 2;
+  }
+  .exp-media {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+  }
+  .exp-main {
+    aspect-ratio: 16 / 10;
+  }
+  .exp-inset {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    width: 42%;
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+  }
+  .exp-body {
+    display: grid;
+    gap: 1.15rem;
+    justify-items: start;
+    padding: 0.5rem 0.25rem;
+  }
+  .exp-quote {
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+    font-style: italic;
+    letter-spacing: 0.04em;
+    color: var(--accent-strong);
+  }
+  .swatch-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.1rem;
+    padding-block: 0.5rem;
+  }
+  .swatch-row li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--secondary);
+  }
+  .swatch-row i {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+  }
+  @media (max-width: 960px) {
+    .exp-panel,
+    .exp-panel-reverse {
+      grid-template-columns: 1fr;
+    }
+    .exp-panel-reverse .exp-media {
+      order: 0;
+    }
+    .exp-inset {
+      position: static;
+      width: 100%;
+    }
+  }
+
+  /* Atelier Bento */
+  .atelier-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .atelier-head .h2 {
+    max-width: 16ch;
+  }
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 2.2vw, 2rem);
+  }
+  @media (max-width: 960px) {
+    .bento-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .bento-card {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding: 0.75rem;
+    transition:
+      transform 0.45s var(--ease),
+      box-shadow 0.45s ease;
+  }
+  .bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.75);
+  }
+  .bento-img {
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+  }
+  .bento-img :global(img) {
+    transition: transform 0.9s var(--ease);
+  }
+  .bento-card:hover .bento-img :global(img) {
+    transform: scale(1.04);
+  }
+  .bento-copy {
+    padding: 1.35rem 0.95rem 1.15rem;
+    display: grid;
+    gap: 0.65rem;
+    align-content: start;
+  }
+  .bento-copy p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  /* Invitation Banner */
+  .invite-card {
+    position: relative;
+    min-height: 28rem;
+    display: grid;
+    align-items: center;
+    padding: clamp(2.5rem, 6vw, 5.5rem);
+  }
+  .invite-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .invite-bg :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.48;
+  }
+  .invite-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(5, 6, 11, 0.92) 0%, rgba(5, 6, 11, 0.72) 55%, rgba(5, 6, 11, 0.42) 100%);
+  }
+  .invite-content {
+    position: relative;
+    z-index: 1;
+    max-width: 44rem;
+    display: grid;
+    gap: 1.4rem;
+    justify-items: start;
+  }
+  .invite-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 0.5rem;
+  }
+</style>
+
+<script>
+  // Split-Cinema Comparator Logic (pointer drag + keyboard arrows)
+  const stage = document.getElementById('split-cinema');
+  const blueLayer = document.getElementById('split-blue-layer');
+  const handle = document.getElementById('split-handle');
+
+  if (stage && blueLayer && handle) {
+    let pct = 50;
+    let dragging = false;
+
+    const apply = (next: number) => {
+      pct = Math.max(5, Math.min(95, next));
+      blueLayer.style.clipPath = `inset(0 ${(100 - pct).toFixed(2)}% 0 0)`;
+      handle.style.left = `${pct.toFixed(2)}%`;
+      handle.setAttribute('aria-valuenow', String(Math.round(pct)));
+    };
+
+    const fromClientX = (x: number) => {
+      const rect = stage.getBoundingClientRect();
+      return ((x - rect.left) / rect.width) * 100;
+    };
+
+    stage.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      stage.setPointerCapture((e as PointerEvent).pointerId);
+      apply(fromClientX((e as PointerEvent).clientX));
+    });
+
+    stage.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      apply(fromClientX((e as PointerEvent).clientX));
+    });
+
+    const stop = () => (dragging = false);
+    stage.addEventListener('pointerup', stop);
+    stage.addEventListener('pointercancel', stop);
+
+    handle.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') apply(pct - 4);
+      if (e.key === 'ArrowRight') apply(pct + 4);
+    });
+  }
+</script>

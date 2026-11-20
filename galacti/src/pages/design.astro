@@ -1,0 +1,628 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DualPhoto from '../components/DualPhoto.astro';
+import Photo from '../components/Photo.astro';
+import { blue, grey, craft, alt } from '../data/media';
+
+const hotspots = [
+  {
+    id: 'optics',
+    no: '01',
+    title: 'Design Frontal & Óptica Cristalina',
+    xBlue: '11%',
+    yBlue: '54%',
+    xGrey: '39%',
+    yGrey: '56%',
+    desc: 'Splitter aerodinâmico baixo combinado a lâminas cristalinas de LED em múltiplas camadas, embutidas em entradas de carbono esculpidas.',
+  },
+  {
+    id: 'wheels',
+    no: '02',
+    title: 'Rodas Forjadas & Cerâmica',
+    xBlue: '26%',
+    yBlue: '66%',
+    xGrey: '53%',
+    yGrey: '65%',
+    desc: 'Raios forjados usinados em perfil de turbina emoldurando discos cerâmicos perfurados e pinças exclusivas de cada edição.',
+  },
+  {
+    id: 'canopy',
+    no: '03',
+    title: 'Carroceria & Portas Diédricas',
+    xBlue: '45%',
+    yBlue: '44%',
+    xGrey: '56%',
+    yGrey: '42%',
+    desc: 'Linha de teto contínua e portas diédricas que se elevam para revelar um cockpit sob medida, livre de distrações visuais.',
+  },
+  {
+    id: 'aero',
+    no: '04',
+    title: 'Entradas de Ar & Difusor Traseiro',
+    xBlue: '72%',
+    yBlue: '47%',
+    xGrey: '72%',
+    yGrey: '54%',
+    desc: 'Canais laterais submersos e geometria de difusor esculpido que direcionam o fluxo de ar com limpeza da dianteira ao escape.',
+  },
+  {
+    id: 'interior',
+    no: '05',
+    title: 'Interior, Painel & Materiais',
+    xBlue: '41%',
+    yBlue: '50%',
+    xGrey: '48%',
+    yGrey: '46%',
+    desc: 'Couro noturno costurado à mão, trama de carbono forjado e comandos usinados projetados em torno do foco do condutor.',
+  },
+];
+---
+
+<BaseLayout
+  title="Design & Manufatura"
+  current="design"
+  theme="blue"
+  description="Design & Manufatura — Um estudo editorial da óptica, carroceria, rodas, aerodinâmica e interior GALACTI."
+>
+  <!-- ============ CABEÇALHO EDITORIAL ============ -->
+  <section class="mast" data-hero>
+    <div class="mast-media">
+      <DualPhoto shot="front" greyShot="front" sizes="100vw" eager label="Elevação frontal GALACTI" />
+      <div class="mast-shade" aria-hidden="true"></div>
+    </div>
+
+    <div class="wrap mast-inner">
+      <div class="mast-copy">
+        <span class="eyebrow" data-reveal="fade">A Arte por Trás da GALACTI</span>
+        <h1 class="display" data-split>Design <em>&amp;</em><br />Manufatura</h1>
+        <p class="lead" data-reveal="up" data-delay="180">
+          Um exame editorial de proporção, óptica, escultura aerodinâmica e superfícies finalizadas à mão em ambas as expressões.
+        </p>
+      </div>
+
+      <div class="finish-bar fx-card border-gradient" role="group" aria-label="Alternar acabamento">
+        <span class="caption">Visualizando</span>
+        <div class="finish-btns">
+          <button type="button" class="fs is-on" data-finish="blue" aria-pressed="true">
+            <i class="dot dot-blue" aria-hidden="true"></i>
+            <span>Cosmic Blue</span>
+          </button>
+          <button type="button" class="fs" data-finish="grey" aria-pressed="false">
+            <i class="dot dot-grey" aria-hidden="true"></i>
+            <span>Eclipse Grey</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (01) — ANATOMIA INTERATIVA DE MANUFATURA ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>01 · Anatomia Interativa da Carroceria</span>
+        <span>(01)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="anatomy-head">
+        <h2 class="h2" data-split>Cada detalhe serve <em>à silhueta.</em></h2>
+        <p class="lead" data-reveal="up">Selecione um ponto numerado no veículo para inspecionar óptica, rodas, carroceria, fluxo de ar e materiais da cabine.</p>
+      </div>
+
+      <div class="anatomy-grid">
+        <!-- Prancha Principal Interativa -->
+        <div class="fx-frame border-gradient anatomy-stage" data-reveal="up">
+          <div class="fx-frame-inner stage-inner" id="anatomy-stage">
+            <DualPhoto shot="profile" greyShot="front" sizes="(min-width: 960px) 62vw, 94vw" label="Vista anatômica GALACTI" />
+            <div class="stage-scrim" aria-hidden="true"></div>
+            {
+              hotspots.map((h, i) => (
+                <button
+                  type="button"
+                  class={`hotspot ${i === 0 ? 'is-active' : ''}`}
+                  data-hotspot={h.id}
+                  data-index={i}
+                  style={`--xb:${h.xBlue};--yb:${h.yBlue};--xg:${h.xGrey};--yg:${h.yGrey}`}
+                  aria-label={`Inspecionar ${h.title}`}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                >
+                  <span>{h.no}</span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Cartão de Inspeção Lateral -->
+        <aside class="inspector fx-card border-gradient" aria-live="polite" data-reveal="up" data-delay="120">
+          <div class="insp-media frame">
+            <div class="insp-plate is-active" data-plate="optics">
+              <Photo src={craft.headlight} alt={alt.craftHeadlight} sizes="(min-width: 960px) 30vw, 90vw" />
+            </div>
+            <div class="insp-plate" data-plate="wheels">
+              <Photo src={craft.wheel} alt={alt.craftWheel} sizes="(min-width: 960px) 30vw, 90vw" />
+            </div>
+            <div class="insp-plate" data-plate="canopy">
+              <Photo src={blue.doors} alt={alt.doors} sizes="(min-width: 960px) 30vw, 90vw" />
+            </div>
+            <div class="insp-plate" data-plate="aero">
+              <Photo src={blue.rear} alt={alt.rear} sizes="(min-width: 960px) 30vw, 90vw" />
+            </div>
+            <div class="insp-plate" data-plate="interior">
+              <Photo src={craft.cockpit} alt={alt.craftCockpit} sizes="(min-width: 960px) 30vw, 90vw" />
+            </div>
+          </div>
+
+          <div class="insp-body">
+            <span class="figure-no" id="insp-no">01</span>
+            <h3 class="h3" id="insp-title">{hotspots[0].title}</h3>
+            <p class="lead" id="insp-desc">{hotspots[0].desc}</p>
+
+            <div class="insp-tabs" role="tablist" aria-label="Capítulos rápidos da anatomia">
+              {
+                hotspots.map((h, i) => (
+                  <button
+                    type="button"
+                    class={`tab-dot ${i === 0 ? 'is-active' : ''}`}
+                    data-hotspot-btn={h.id}
+                    data-index={i}
+                    aria-label={h.title}
+                  >
+                    {h.no}
+                  </button>
+                ))
+              }
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (02) — COMPÊNDIO EDITORIAL COMPLETO ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="fx-section-bar" data-reveal="fade">
+        <span>02 · Compêndio de Alta Manufatura</span>
+        <span>(02)</span>
+      </div>
+      <div class="fx-section-rule" aria-hidden="true"></div>
+
+      <div class="compendium-grid">
+        <!-- 1. Design Frontal & Faróis -->
+        <article class="comp-card fx-card border-gradient" data-reveal="up">
+          <div class="comp-img frame">
+            <Photo src={craft.headlight} alt={alt.craftHeadlight} sizes="(min-width: 900px) 44vw, 94vw" />
+          </div>
+          <div class="comp-copy">
+            <span class="caption">01 · Design Frontal &amp; Faróis</span>
+            <h3 class="h3">Clareza Óptica</h3>
+            <p>Lâminas cristalinas de LED aninhadas em tomadas esculpidas projetam um olhar deliberado e inconfundível à noite.</p>
+          </div>
+        </article>
+
+        <!-- 2. Carroceria & Silhueta -->
+        <article class="comp-card fx-card border-gradient" data-reveal="up" data-delay="90">
+          <div class="comp-img frame">
+            <DualPhoto shot="doors" greyShot="fender" sizes="(min-width: 900px) 44vw, 94vw" label="Carroceria e abertura GALACTI" />
+          </div>
+          <div class="comp-copy">
+            <span class="caption">02 · Carroceria &amp; Acabamentos</span>
+            <h3 class="h3">Tensão Esculpida</h3>
+            <p>Volumes contínuos, geometria diédrica das portas e profundidade metálica artesanal sem vincos supérfluos.</p>
+          </div>
+        </article>
+
+        <!-- 3. Rodas & Freios -->
+        <article class="comp-card fx-card border-gradient" data-reveal="up">
+          <div class="comp-img frame">
+            <DualPhoto shot="profile" greyShot="wheel" sizes="(min-width: 900px) 44vw, 94vw" label="Arquitetura de rodas e freios" />
+            <div class="comp-overlay-plate" data-blue-only>
+              <Photo src={craft.wheel} alt={alt.craftWheel} sizes="(min-width: 900px) 44vw, 94vw" />
+            </div>
+          </div>
+          <div class="comp-copy">
+            <span class="caption">03 · Rodas &amp; Postura</span>
+            <h3 class="h3">Precisão Forjada</h3>
+            <p>Raios esguios que emolduram discos cerâmicos perfurados e pinças exclusivas harmonizadas com cada edição.</p>
+          </div>
+        </article>
+
+        <!-- 4. Entradas & Aerodinâmica -->
+        <article class="comp-card fx-card border-gradient" data-reveal="up" data-delay="90">
+          <div class="comp-img frame">
+            <DualPhoto shot="rear" greyShot="exhaust" sizes="(min-width: 900px) 44vw, 94vw" label="Difusor traseiro e saídas aerodinâmicas" />
+          </div>
+          <div class="comp-copy">
+            <span class="caption">04 · Entradas &amp; Aerodinâmica</span>
+            <h3 class="h3">Ar como Matéria</h3>
+            <p>Tomadas laterais submersas, canais inferiores esculpidos e escapamento central duplo emoldurado em carbono.</p>
+          </div>
+        </article>
+
+        <!-- 5. Interior & Painel -->
+        <article class="comp-card fx-card border-gradient" data-reveal="up">
+          <div class="comp-img frame">
+            <Photo src={blue.interior} alt={alt.interior} sizes="(min-width: 900px) 44vw, 94vw" />
+          </div>
+          <div class="comp-copy">
+            <span class="caption">05 · Interior &amp; Painel</span>
+            <h3 class="h3">Santuário do Condutor</h3>
+            <p>Bancos concha posicionados rente ao assoalho, volante tátil e mostradores alinhados com serenidade ao horizonte.</p>
+          </div>
+        </article>
+
+        <!-- 6. Materiais & Texturas -->
+        <article class="comp-card fx-card border-gradient" data-reveal="up" data-delay="90">
+          <div class="comp-img frame">
+            <Photo src={craft.carbon} alt={alt.craftCarbon} sizes="(min-width: 900px) 44vw, 94vw" />
+          </div>
+          <div class="comp-copy">
+            <span class="caption">06 · Materiais &amp; Texturas</span>
+            <h3 class="h3">Carbono Forjado &amp; Metal</h3>
+            <p>Tramas brutas de compósito forjado, seletores em prata escovado e couros noturnos eleitos pela honestidade tátil.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO (03) — DUALIDADE FINAL ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="closing-card fx-card border-gradient" data-reveal="up">
+        <div class="closing-copy">
+          <span class="eyebrow">Dois Acabamentos · Um Padrão</span>
+          <h2 class="h2">Escolha sua <em>expressão.</em></h2>
+          <p class="lead">Siga para qualquer uma das edições GALACTI ou explore a filosofia da marca.</p>
+          <div class="closing-links">
+            <a href="/cosmic-blue/" class="pill-btn border-gradient"><span>Cosmic Blue</span></a>
+            <a href="/eclipse-grey/" class="pill-btn border-gradient"><span>Eclipse Grey</span></a>
+            <a href="/universe/" class="pill-btn pill-btn-primary"><span>O Universo Galacti</span></a>
+          </div>
+        </div>
+        <div class="closing-img frame">
+          <Photo src={craft.cockpit} alt={alt.craftCockpit} sizes="(min-width: 900px) 44vw, 92vw" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script
+    type="application/json"
+    id="hotspots-data"
+    set:html={JSON.stringify(hotspots)}
+  />
+</BaseLayout>
+
+<style>
+  /* Masthead */
+  .mast {
+    position: relative;
+    min-height: 82vh;
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    padding-top: calc(var(--header-h) + 2rem);
+    padding-bottom: clamp(3rem, 7vh, 5rem);
+  }
+  .mast-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .mast-shade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(5, 6, 11, 0.55) 0%, rgba(5, 6, 11, 0.15) 35%, rgba(5, 6, 11, 0.94) 100%),
+      linear-gradient(90deg, rgba(5, 6, 11, 0.85) 0%, transparent 70%);
+  }
+  .mast-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+  }
+  .mast-copy {
+    display: grid;
+    gap: 1.15rem;
+    max-width: 44rem;
+  }
+  .finish-bar {
+    padding: 0.75rem 0.9rem 0.75rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    flex-wrap: wrap;
+  }
+  .finish-btns {
+    display: inline-flex;
+    gap: 0.35rem;
+  }
+  .fs {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.48rem 0.95rem;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  .fs.is-on {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  .dot-blue {
+    background: #60a5fa;
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.85);
+  }
+  .dot-grey {
+    background: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  /* Anatomy */
+  .anatomy-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .anatomy-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+    align-items: center;
+  }
+  .stage-inner {
+    aspect-ratio: 16 / 10;
+  }
+  .stage-scrim {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 48%, rgba(5, 6, 11, 0.45) 100%);
+    pointer-events: none;
+  }
+  .hotspot {
+    position: absolute;
+    left: var(--xb);
+    top: var(--yb);
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: rgba(5, 6, 11, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.48);
+    color: var(--ice);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    display: grid;
+    place-items: center;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition:
+      transform 0.35s var(--ease),
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      left 0.5s var(--ease),
+      top 0.5s var(--ease);
+  }
+  :global(body[data-finish='grey']) .hotspot {
+    left: var(--xg);
+    top: var(--yg);
+  }
+  .hotspot:hover,
+  .hotspot.is-active {
+    transform: translate(-50%, -50%) scale(1.16);
+    background: var(--ice);
+    color: #05060b;
+    border-color: var(--ice);
+    box-shadow: 0 0 24px var(--accent-soft);
+  }
+
+  .inspector {
+    padding: 0.85rem;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+  }
+  .insp-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+  }
+  .insp-plate {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+  }
+  .insp-plate.is-active {
+    opacity: 1;
+  }
+  .insp-plate :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .insp-body {
+    padding: 0.35rem 0.65rem 0.75rem;
+    display: grid;
+    gap: 0.65rem;
+    align-content: space-between;
+  }
+  .insp-body .lead {
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+  .insp-tabs {
+    display: flex;
+    gap: 0.45rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--line);
+  }
+  .tab-dot {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    font-size: 0.66rem;
+    color: var(--muted);
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+  .tab-dot.is-active,
+  .tab-dot:hover {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+  }
+  @media (max-width: 980px) {
+    .anatomy-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Compendium */
+  .compendium-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  }
+  @media (max-width: 820px) {
+    .compendium-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .comp-card {
+    padding: 0.75rem;
+    display: grid;
+    gap: 0.9rem;
+  }
+  .comp-img {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: 18px;
+  }
+  .comp-overlay-plate {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    transition: opacity 0.6s ease;
+  }
+  .comp-overlay-plate :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  :global(body[data-finish='grey']) .comp-overlay-plate {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .comp-copy {
+    padding: 0.35rem 0.75rem 0.9rem;
+    display: grid;
+    gap: 0.45rem;
+  }
+  .comp-copy p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* Closing */
+  .closing-card {
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+  .closing-copy {
+    display: grid;
+    gap: 1.25rem;
+    justify-items: start;
+  }
+  .closing-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.4rem;
+  }
+  .closing-img {
+    aspect-ratio: 16 / 10;
+  }
+  @media (max-width: 860px) {
+    .closing-card {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const body = document.body;
+  const finishBtns = document.querySelectorAll<HTMLButtonElement>('.fs');
+
+  function setFinish(f: 'blue' | 'grey') {
+    body.dataset.finish = f;
+    body.dataset.theme = f;
+    finishBtns.forEach((b) => {
+      const on = b.dataset.finish === f;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+  }
+
+  finishBtns.forEach((b) => b.addEventListener('click', () => setFinish(b.dataset.finish as 'blue' | 'grey')));
+
+  const q = new URLSearchParams(location.search).get('finish');
+  if (q === 'grey' || q === 'blue') setFinish(q);
+
+  // Interactive Anatomy Hotspot Switcher
+  type Hotspot = { id: string; no: string; title: string; desc: string };
+  const hotspots: Hotspot[] = JSON.parse(document.getElementById('hotspots-data')?.textContent ?? '[]');
+  const plates = document.querySelectorAll<HTMLElement>('.insp-plate');
+  const pins = document.querySelectorAll<HTMLButtonElement>('[data-hotspot]');
+  const tabBtns = document.querySelectorAll<HTMLButtonElement>('[data-hotspot-btn]');
+  const noEl = document.getElementById('insp-no');
+  const titleEl = document.getElementById('insp-title');
+  const descEl = document.getElementById('insp-desc');
+
+  function activateHotspot(id: string) {
+    const item = hotspots.find((h) => h.id === id);
+    if (!item) return;
+    plates.forEach((p) => p.classList.toggle('is-active', p.dataset.plate === id));
+    pins.forEach((p) => {
+      const on = p.dataset.hotspot === id;
+      p.classList.toggle('is-active', on);
+      p.setAttribute('aria-pressed', String(on));
+    });
+    tabBtns.forEach((t) => t.classList.toggle('is-active', t.dataset.hotspotBtn === id));
+    if (noEl) noEl.textContent = item.no;
+    if (titleEl) titleEl.textContent = item.title;
+    if (descEl) descEl.textContent = item.desc;
+  }
+
+  pins.forEach((p) => p.addEventListener('click', () => activateHotspot(p.dataset.hotspot!)));
+  tabBtns.forEach((t) => t.addEventListener('click', () => activateHotspot(t.dataset.hotspotBtn!)));
+</script>

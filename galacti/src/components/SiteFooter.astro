@@ -1,0 +1,295 @@
+---
+import Logo from './Logo.astro';
+import { nav, legal, social, tagline } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer" id="site-footer">
+  <div class="wrap">
+    <div class="footer-card fx-card border-gradient">
+      <div class="footer-glow" aria-hidden="true"></div>
+
+      <div class="top">
+        <div class="id">
+          <a href="/" class="brand" aria-label="GALACTI — Início">
+            <span class="brand-badge border-gradient" aria-hidden="true">
+              <Logo size={26} />
+            </span>
+            <span class="brand-name">GALACTI</span>
+          </a>
+          <p class="tag serif">{tagline.toUpperCase()}</p>
+          <p class="id-copy">
+            Uma casa exclusiva de hipercarros que une a alta manufatura europeia e a arquitetura cósmica em duas expressões distintas.
+          </p>
+
+          <div class="edition-badges">
+            <a href="/cosmic-blue/" class="ed-chip border-gradient">
+              <i class="dot dot-blue" aria-hidden="true"></i>
+              <span>Cosmic Blue</span>
+            </a>
+            <a href="/eclipse-grey/" class="ed-chip border-gradient">
+              <i class="dot dot-grey" aria-hidden="true"></i>
+              <span>Eclipse Grey</span>
+            </a>
+          </div>
+        </div>
+
+        <nav class="col" aria-label="Navegação do rodapé">
+          <h2 class="caption">Navegação</h2>
+          <ul>
+            {nav.map((n) => <li><a href={n.href} class="f-link">{n.label}</a></li>)}
+          </ul>
+        </nav>
+
+        <div class="col">
+          <h2 class="caption">Informações</h2>
+          <ul>
+            {legal.map((n) => <li><a href={n.href} class="f-link">{n.label}</a></li>)}
+            <li><a href="/contact/" class="f-link">Experiência Privada</a></li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h2 class="caption">Canais Oficiais</h2>
+          <ul class="social">
+            {
+              social.map((s) => (
+                <li>
+                  {s.url ? (
+                    <a href={s.url} class="f-link" target="_blank" rel="noopener noreferrer">
+                      {s.label}
+                    </a>
+                  ) : (
+                    <span
+                      class="f-link is-soon"
+                      title="Canal oficial a ser anunciado"
+                      aria-label={`${s.label} — canal oficial a ser anunciado`}
+                    >
+                      {s.label}
+                    </span>
+                  )}
+                </li>
+              ))
+            }
+          </ul>
+          <p class="soon caption">Perfis oficiais serão divulgados no lançamento.</p>
+        </div>
+      </div>
+
+      <div class="fx-section-rule foot-rule" aria-hidden="true"></div>
+
+      <div class="bottom">
+        <p class="copy">© {year} GALACTI. Todos os direitos reservados.</p>
+        <ul class="legal">
+          {legal.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        </ul>
+        <a href="#top" class="to-top" data-to-top aria-label="Voltar ao topo">
+          <span>Topo</span>
+          <svg width="12" height="16" viewBox="0 0 12 16" fill="none" aria-hidden="true">
+            <path d="M6 15V1M1 6l5-5 5 5" stroke="currentColor" stroke-width="1.2"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    z-index: 5;
+    padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(2rem, 4vw, 3.5rem);
+    background: linear-gradient(180deg, transparent, rgba(5, 6, 11, 0.96));
+    color: var(--ice);
+  }
+  .footer-card {
+    padding: clamp(2.25rem, 5vw, 4.25rem);
+    background:
+      radial-gradient(60% 70% at 85% 0%, rgba(59, 130, 246, 0.1), transparent 65%),
+      linear-gradient(225deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.045) 50%, rgba(255, 255, 255, 0.015));
+  }
+  :global(body[data-theme='grey']) .footer-card {
+    background:
+      radial-gradient(60% 70% at 85% 0%, rgba(212, 180, 131, 0.08), transparent 65%),
+      linear-gradient(225deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.045) 50%, rgba(255, 255, 255, 0.015));
+  }
+  .footer-glow {
+    position: absolute;
+    left: -10%;
+    bottom: -35%;
+    width: 45%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  .top {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.7fr 1fr 1fr 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .brand-badge {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .brand-name {
+    font-family: var(--serif);
+    font-size: 1.65rem;
+    letter-spacing: 0.4em;
+  }
+  .tag {
+    margin-top: 1.35rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.28em;
+    color: var(--champagne);
+  }
+  .id-copy {
+    margin-top: 0.85rem;
+    max-width: 24rem;
+    font-size: 0.88rem;
+    line-height: 1.68;
+    color: var(--muted);
+  }
+
+  .edition-badges {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+  .ed-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.42rem 0.9rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  .ed-chip:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  .dot-blue {
+    background: #60a5fa;
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.85);
+  }
+  .dot-grey {
+    background: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+  }
+
+  .col h2 {
+    margin-bottom: 1.25rem;
+    color: var(--champagne);
+  }
+  .col ul {
+    display: grid;
+    gap: 0.45rem;
+  }
+  .f-link {
+    display: inline-block;
+    padding-block: 0.22rem;
+    font-size: 0.9rem;
+    color: rgba(248, 250, 252, 0.82);
+    transition:
+      color 0.35s ease,
+      transform 0.45s var(--ease);
+  }
+  a.f-link:hover {
+    color: #fff;
+    transform: translateX(0.35rem);
+  }
+  .f-link.is-soon {
+    color: rgba(226, 232, 240, 0.42);
+    cursor: default;
+  }
+  .soon {
+    margin-top: 0.9rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    opacity: 0.72;
+  }
+
+  .foot-rule {
+    margin-top: clamp(2rem, 4vw, 3.25rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .bottom {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .legal {
+    display: flex;
+    gap: 1.75rem;
+  }
+  .legal a:hover {
+    color: #fff;
+  }
+  .to-top {
+    display: inline-flex;
+    gap: 0.75rem;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    font-size: 0.65rem;
+    color: var(--ice);
+  }
+  .to-top svg {
+    transition: transform 0.5s var(--ease);
+  }
+  .to-top:hover svg {
+    transform: translateY(-4px);
+  }
+
+  @media (max-width: 920px) {
+    .top {
+      grid-template-columns: 1fr 1fr;
+    }
+    .id {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 540px) {
+    .top {
+      grid-template-columns: 1fr;
+    }
+    .bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
