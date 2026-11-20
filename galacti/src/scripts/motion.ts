@@ -498,7 +498,7 @@ if (!reduced && window.matchMedia('(pointer: fine)').matches) {
       idx = (i + group.length) % group.length;
       const src = group[idx].querySelector('img');
       if (!src) return;
-      img.src = src.currentSrc || src.src;
+      img.src = src.getAttribute('src') || src.currentSrc || src.src;
       img.alt = src.alt;
       cap.textContent = group[idx].dataset.caption ?? '';
     };

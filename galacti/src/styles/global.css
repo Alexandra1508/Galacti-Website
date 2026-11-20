@@ -327,6 +327,12 @@ ol {
   object-fit: cover;
   display: block;
 }
+.galacti-photo,
+.fx-frame-inner > img,
+.frame > img,
+.split-video {
+  filter: contrast(1.03) saturate(1.04);
+}
 
 /* Fluxora Section Header Bar & Gradient Hairline Rule */
 .fx-section-bar {

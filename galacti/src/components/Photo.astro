@@ -24,6 +24,7 @@ const {
   parallax = 0.06,
   decorative = false,
 } = Astro.props;
+const effectiveSizes = sizes.includes('160px') ? '600px' : '100vw';
 ---
 
 {
@@ -32,12 +33,12 @@ const {
       <Image
         src={src}
         alt={decorative ? '' : alt}
-        widths={[480, 800, 1200, 1376]}
-        sizes={sizes}
+        widths={[1600, 2560]}
+        sizes={effectiveSizes}
         loading={eager ? 'eager' : 'lazy'}
         decoding="sync"
         format="webp"
-        quality={82}
+        quality={96}
         class:list={['galacti-photo', cls]}
         style={`object-position:${pos}`}
       />
@@ -46,12 +47,12 @@ const {
     <Image
       src={src}
       alt={decorative ? '' : alt}
-      widths={[480, 800, 1200, 1376]}
-      sizes={sizes}
+      widths={[1600, 2560]}
+      sizes={effectiveSizes}
       loading={eager ? 'eager' : 'lazy'}
       decoding="sync"
       format="webp"
-      quality={82}
+      quality={96}
       class:list={['galacti-photo', cls]}
       style={`object-position:${pos}`}
     />

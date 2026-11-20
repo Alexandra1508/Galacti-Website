@@ -22,7 +22,7 @@ const {
   telemetryLeft = 'ATELIÊ GALACTI · SÉRIE I',
   telemetryRight = [],
 } = Astro.props;
-const p = await getImage({ src: poster, width: 1376, format: 'webp', quality: 82 });
+const p = await getImage({ src: poster, width: 2560, format: 'webp', quality: 96 });
 ---
 
 <section class={`hero hero-${tone} hero-${variant}`} data-hero data-scrub="exit" aria-label={label}>
@@ -179,8 +179,7 @@ const p = await getImage({ src: poster, width: 1376, format: 'webp', quality: 82
     object-fit: cover;
     object-position: center;
     background: var(--space);
-    scale: calc(1 + var(--p) * 0.08);
-    will-change: scale;
+    filter: contrast(1.04) saturate(1.05);
   }
   .grade {
     position: absolute;
@@ -188,9 +187,9 @@ const p = await getImage({ src: poster, width: 1376, format: 'webp', quality: 82
     z-index: 1;
     pointer-events: none;
     background:
-      linear-gradient(180deg, rgba(5, 6, 11, 0.52) 0%, rgba(5, 6, 11, 0) 24%),
-      linear-gradient(0deg, rgba(5, 6, 11, 0.86) 0%, rgba(5, 6, 11, 0.28) 26%, rgba(5, 6, 11, 0) 48%),
-      radial-gradient(110% 85% at 50% 45%, transparent 56%, rgba(5, 6, 11, 0.5) 100%);
+      linear-gradient(180deg, rgba(5, 6, 11, 0.42) 0%, rgba(5, 6, 11, 0) 22%),
+      linear-gradient(0deg, rgba(5, 6, 11, 0.82) 0%, rgba(5, 6, 11, 0.24) 24%, rgba(5, 6, 11, 0) 44%),
+      radial-gradient(110% 85% at 50% 45%, transparent 68%, rgba(5, 6, 11, 0.42) 100%);
   }
   .hero-blue .grade::after {
     content: '';
